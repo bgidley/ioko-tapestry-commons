@@ -280,7 +280,7 @@
             <distributionManagement>
                 <site>
                     <!-- Maven will tack on the artifact id as a subdirectory. -->
-                    <url>file:/var/www/projects</url>
+                    <url>file:/var/www/projects/ioko-tapestry-commons</url>
                 </site>
             </distributionManagement>
 
