@@ -21,7 +21,7 @@
 <head>
 </head>
 <body>
-<p>Caching test page</p>
+<p>Not Caching test page</p>
 
 <dl id="live">
     <dt>Time Now</dt>
