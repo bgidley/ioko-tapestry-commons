@@ -57,7 +57,7 @@
     </developers>
 
     <scm>
-        <connection>scm:svn:https://svn.ioko.com/ADG/tapestry-commons</connection>
+        <connection>scm:svn:https://tapestry.formos.com/svn/ioko-tapestry-commons</connection>
     </scm>
 
     <build>
@@ -167,6 +167,13 @@
             <url>file:/var/www/nightly/ioko-tapestry-commons</url>
         </site>
     </distributionManagement>
+
+    <issueManagement>
+          <system>jira</system>
+          <url>http://tapestry.formos.com/jira/browse/IOKOCOMMONS</url>
+      </issueManagement>
+
+
 
 
     <repositories>
