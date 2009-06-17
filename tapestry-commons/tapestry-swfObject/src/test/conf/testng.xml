@@ -31,4 +31,6 @@
             <package name="uk.co.ioko.tapestry.swfObject.integration"/>
         </packages>
     </test>
+   
 </suite>
+

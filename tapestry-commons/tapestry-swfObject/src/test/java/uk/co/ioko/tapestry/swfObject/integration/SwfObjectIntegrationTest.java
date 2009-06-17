@@ -30,7 +30,7 @@ public class SwfObjectIntegrationTest extends AbstractIntegrationTestSuite {
 		super("src/test/webapp");
 	}
 
-	@Test
+	@Test(groups = "flashRequired")
 	public void testFlashLoader() throws Exception {
 		open(BASE_URL + "SwfObjectTestPage");
 
