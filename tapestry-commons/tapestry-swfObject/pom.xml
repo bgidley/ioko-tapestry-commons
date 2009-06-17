@@ -41,8 +41,20 @@
                     <webAppSourceDirectory>src/test/webapp</webAppSourceDirectory>
                 </configuration>
             </plugin>
-        </plugins>
-    </build>
+               <plugin>
+                   <groupId>org.apache.maven.plugins</groupId>
+                   <artifactId>maven-jar-plugin</artifactId>
+                   <configuration>
+                       <archive>
+                           <manifestEntries>
+                               <Tapestry-Module-Classes>uk.co.ioko.tapestry.swfObject.services.SwfModule</Tapestry-Module-Classes>
+                           </manifestEntries>
+                       </archive>
+                   </configuration>
+               </plugin>
+           </plugins>
+       </build>
+
 
     <reporting>
 

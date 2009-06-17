@@ -1,0 +1,54 @@
+Cache Control
+
+ This module add the ability to control the caching of your tapestry pages by simply annotating the
+ class.
+
+==+
+  @CacheControl(cacheType = CacheType.NEVER)
+  public class myPage(){
+
+    ....
+
+  }
+
+==+
+
+Cache Type
+
+ This library supports the following cachetypes
+
+* NEVER - Never cache the page
+* SHORT - A short time (default 5 minutes)
+* MEDIUM - A medium time (default 1 hour)
+* LONG - A long time (default 1 day)
+* FAR_FUTURE - Cache the page for a extremely long time (default 10 years)
+* NONE - Don't do anything to this page
+
+ The cache types are configured via application defaults so you can override them by contributing your own preferences. The time parameter is in seconds.
+
+==+
+ public static void contributeApplicationDefaults(MappedConfiguration<String,String> configuration)
+  {
+    configuration.add(cacheControl.short, "60");
+    configuration.add(cacheControl.medium, "600");
+    configuration.add(cacheControl.long, "6000");
+    configuration.add(cacheControl.farFuture, "60000");
+  }
+==+
+
+Default Cache Type
+
+ The library also has a default cache header applied to all pages. This default is set (by default) to NEVER.
+ This can also be changed by contributing a default
+
+ ==+
+     configuration.add(CacheControlTransformer.CACHE_TYPE_METADATA, CacheType.NONE);
+ ==+
+
+Implementation Notes
+
+ The library seeks to use headers that will work with many proxy servers/browsers so it sets
+
+* Expires
+* Cache Control
+* Pragma='no-cache'
