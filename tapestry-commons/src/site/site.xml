@@ -35,6 +35,7 @@
 
     <body>
         <menu name="Nightly Builds" ref="http://tapestry.formos.com/nightly/ioko-tapestry-commons/"/>
+        <menu name="Release Builds" ref="http://tapestry.formos.com/projects/ioko-tapestry-commons/"/>
         <menu ref="modules"/>
         <menu ref="parent"/>
         <menu ref="reports"/>
