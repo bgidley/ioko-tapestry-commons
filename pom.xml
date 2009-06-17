@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>uk.co.ioko</groupId>
+    <artifactId>ioko-tapestry-commons</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>ioko Tapestry Commons</name>
+
+    <parent>
+        <groupId>com.formos.tapestry</groupId>
+        <artifactId>tapestry360-project</artifactId>
+        <version>1.0.0.0</version>
+    </parent>
+
+
+    <modules>
+        <module>tapestry-caching</module>
+        <module>tapestry-swfObject</module>
+        <module>tapestry-cacheControl</module>
+    </modules>
+
+    <licenses>
+        <license>
+            <name>GPL Version 3</name>
+            <url>http://www.gnu.org/licenses/gpl.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <organization>
+        <name>ioko</name>
+        <url>http://www.ioko.com</url>
+    </organization>
+
+    <developers>
+        <developer>
+            <name>Ben Gidley</name>
+            <url>http://www.gidley.co.uk/</url>
+            <organization>ioko</organization>
+            <organizationUrl>http://www.ioko.com/</organizationUrl>
+            <email>ben@gidley.co.uk</email>
+            <timezone>0</timezone>
+        </developer>
+        <developer>
+            <name>Alfie Kirkpatrick</name>
+            <organization>ioko</organization>
+            <organizationUrl>http://www.ioko.com/</organizationUrl>
+            <timezone>0</timezone>
+        </developer>
+        <developer>
+            <name>Sam Eldred</name>
+            <organization>ioko</organization>
+            <organizationUrl>http://www.ioko.com/</organizationUrl>
+            <timezone>0</timezone>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:svn:https://svn.ioko.com/ADG/tapestry-commons</connection>
+    </scm>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.apache.tapestry</groupId>
+                <artifactId>tapestry-core</artifactId>
+                <version>${tapestry-release-version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>log4j</groupId>
+                        <artifactId>log4j</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-log4j12</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.tapestry</groupId>
+                <artifactId>tapestry-ioc</artifactId>
+                <version>${tapestry-release-version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>log4j</groupId>
+                        <artifactId>log4j</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-log4j12</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.tapestry</groupId>
+                <artifactId>tapestry-test</artifactId>
+                <version>${tapestry-release-version}</version>
+                <scope>test</scope>
+                <exclusions>
+                    <exclusion>
+                        <groupId>log4j</groupId>
+                        <artifactId>log4j</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-log4j12</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mortbay.jetty</groupId>
+                <artifactId>jetty</artifactId>
+                <version>${jetty-release-version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.mortbay.jetty</groupId>
+                <artifactId>jetty-management</artifactId>
+                <version>${jetty-release-version}</version>
+                <scope>provided</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <repositories>
+        <repository>
+            <id>tapestry</id>
+            <url>http://tapestry.formos.com/maven-repository</url>
+        </repository>
+        <repository>
+            <id>tapestry-snapshot</id>
+            <url>http://tapestry.formos.com/maven-snapshot-repository</url>
+        </repository>
+    </repositories>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <classifier>jdk15</classifier>
+            <version>5.8</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <version>0.9.15</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>0.9.15</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>1.5.6</version>
+            <scope>test</scope>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>log4j-over-slf4j</artifactId>
+            <version>1.5.6</version>
+            <scope>test</scope>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jul-to-slf4j</artifactId>
+            <version>1.5.6</version>
+            <scope>test</scope>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.5.6</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.5</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <properties>
+        <tapestry-release-version>5.1.0.3</tapestry-release-version>
+        <jetty-release-version>6.1H.14</jetty-release-version>
+    </properties>
+</project>

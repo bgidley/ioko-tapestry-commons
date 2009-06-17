@@ -1,0 +1,7 @@
+Tapestry Caching
+
+Usage Notes
+
+ 'Simply' place the caching tag around your cachable content.
+
+ You must make sure you application server is NOT generating 'cookieless sessions' if your cached area includes any hyperlinks.

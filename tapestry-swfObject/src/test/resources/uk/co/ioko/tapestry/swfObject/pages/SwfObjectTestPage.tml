@@ -1,0 +1,20 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd">
+<head></head>
+<body>
+<h1>Swf Object Test Page</h1>
+<h2>Basic Swf</h2>
+<div t:id="swfObject" t:type="ioko/swfObject" width="300" height="300" swf="literal:/assets/app/1.0/pages/SwfObjectTest.swf"
+     flashvars="flashVars">
+    <p>Non Flash Content</p>
+</div>
+<h2>Asset loaded swf</h2>
+<div t:id="swfObject2" t:type="ioko/swfObject" width="300" height="300" swf="asset:SwfObjectTest.swf"
+     flashvars="flashVars">
+    <p>Non Flash Content</p>
+</div>
+
+<h2>What does flash think has happend</h2>
+<div id="flashvarResults">
+</div>
+</body>
+</html>

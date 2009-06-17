@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="300" height="300" creationComplete="initVars()">
+	<mx:Script>
+		<![CDATA[
+			import mx.events.ItemClickEvent;
+		
+		import flash.system.Capabilities;
+		
+			// Declare bindable properties in Application scope.
+	     [Bindable]
+	     public var flashVarsText:String;
+	     [Bindable]
+	     public var paramsText:String;
+	     [Bindable]
+	     public var attributesText:String;
+	     [Bindable]
+	     public var flashVersionText:String = "";
+	     
+	     // Assign values to new properties.
+	     private function initVars():void {
+	     	
+	     	
+	     	flashVarsText="Flash Vars:\n";
+	     	for (var item:Object in Application.application.parameters){
+	     		flashVarsText += item + ":" + Application.application.parameters[item] + ";\n";
+	     	}
+	     	
+	     	paramsText = Application.application.parameters.myHometown;
+	        attributesText = ""; 
+	        flashVersionText = Capabilities.version;
+	        
+	        ExternalInterface.addCallback("getFlashVars", getFlashVars);
+	     }
+	     
+	     
+	     public function getFlashVars():Object{
+	     	
+	     	return Application.application.parameters;
+	     }
+		]]>
+	</mx:Script>
+
+
+	<mx:Text x="12" y="29" text="{flashVarsText}" id="flashVarsTextControl"/>
+	<mx:Text x="10" y="202" text="{paramsText}" id="paramsTextControl"/>
+	<mx:Text x="10" y="257" text="{attributesText}" id="attributesTextControl"/>
+	<mx:Text x="10" y="3" text="{flashVersionText}" id="flashVersionTextControl"/>
+	
+</mx:Application>
