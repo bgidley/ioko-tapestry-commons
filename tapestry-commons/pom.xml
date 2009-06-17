@@ -164,7 +164,7 @@
         <site>
             <!-- Overridden by the deploy profile. -->
             <!-- Maven will tack on the artifact id. -->
-            <url>file:/var/www/nightly</url>
+            <url>file:/var/www/nightly/ioko-tapestry-commons</url>
         </site>
     </distributionManagement>
 
@@ -284,6 +284,24 @@
                 </site>
             </distributionManagement>
 
+        </profile>
+        <profile>
+            <id>bamboo</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-site-plugin</artifactId>
+                    </plugin>
+                </plugins>
+            </build>
+            <reporting>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                    </plugin>
+                </plugins>
+            </reporting>
         </profile>
     </profiles>
 </project>
