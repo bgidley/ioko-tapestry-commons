@@ -49,7 +49,7 @@
                 } catch(err) {}
             </script>
         </head>
-        <menu name="Builds">
+        <menu name="Sites">
             <item name="Release Site" href="http://tapestry.formos.com/projects/ioko-tapestry-commons/"/>
             <item name="Nightly Site" href="http://tapestry.formos.com/nightly/ioko-tapestry-commons/"/>
         </menu>
