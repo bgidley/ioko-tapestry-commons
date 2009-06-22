@@ -84,6 +84,30 @@
                     <optimize>true</optimize>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>com.atlassian.maven.plugins</groupId>
+                <artifactId>maven-clover2-plugin</artifactId>
+                <configuration>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>main</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>instrument</goal>
+                            <goal>aggregate</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>site</id>
+                        <phase>pre-site</phase>
+                        <goals>
+                            <goal>instrument</goal>
+                            <goal>aggregate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
@@ -261,6 +285,7 @@
     <properties>
         <tapestry-release-version>5.1.0.3</tapestry-release-version>
         <jetty-release-version>6.1H.14</jetty-release-version>
+        <clover.version>2.5.1</clover.version>
     </properties>
 
 
@@ -286,6 +311,7 @@
                     <plugin>
                         <artifactId>maven-site-plugin</artifactId>
                     </plugin>
+
                 </plugins>
             </build>
             <reporting>
@@ -299,19 +325,10 @@
                         <artifactId>maven-jxr-plugin</artifactId>
                     </plugin>
                     <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-report-plugin</artifactId>
-                        <reportSets>
-                            <reportSet>
-                                <reports>
-                                    <report>report-only</report>
-                                </reports>
-                            </reportSet>
-                        </reportSets>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>cobertura-maven-plugin</artifactId>
+                        <groupId>com.atlassian.maven.plugins</groupId>
+                        <artifactId>maven-clover2-plugin</artifactId>
+                        <configuration>
+                        </configuration>
                     </plugin>
                 </plugins>
             </reporting>
