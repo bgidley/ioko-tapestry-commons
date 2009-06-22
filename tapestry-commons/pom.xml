@@ -108,6 +108,7 @@
                         <goals>
                             <goal>instrument</goal>
                             <goal>aggregate</goal>
+                            <goal>save-history</goal>
                         </goals>
                     </execution>
                 </executions>
@@ -332,6 +333,10 @@
                         <groupId>com.atlassian.maven.plugins</groupId>
                         <artifactId>maven-clover2-plugin</artifactId>
                         <configuration>
+                            <generateHistorical>true</generateHistorical>
+                            <generatePdf>false</generatePdf>
+                            <generateXml>true</generateXml>
+                            <generateHtml>true</generateHtml>
                         </configuration>
                     </plugin>
                 </plugins>
