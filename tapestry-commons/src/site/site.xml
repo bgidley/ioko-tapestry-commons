@@ -39,7 +39,8 @@
             <item name="Nightly Site" href="http://tapestry.formos.com/nightly/ioko-tapestry-commons/"/>
         </menu>
         <menu ref="modules"/>
-        <menu ref="parent"/>
         <menu ref="reports"/>
+        <menu ref="parentProject" inherit="top"/>
+
     </body>
 </project>
