@@ -2,6 +2,32 @@ Introduction
 
  This library lets you simply include a flash movies in a tapestry page. It will insert the swf using Swfobject and lets you easily pass information through to it.
 
+Usage
+
+ Add the component referencing your SWF.
+
++--
+<div t:id="swfObject" t:type="ioko/swfObject" width="300" height="300" swf="asset:SwfObjectTest.swf"
+     flashvars="flashVars">
+    <p>Non Flash Content</p>
+</div>
++--
+
+ The flashvars parameters (also attributes and params) are JSON parameters. You need to create a property in your page class to initialise it.
+
++--
+    @Property
+	private JSONObject flashVars;
+
+	public void setupRender() {
+		flashVars = new JSONObject();
+		flashVars.append("Cat", "Parsnip");
+		flashVars.append("Vegetable", "Turnip");
+	}
++--
+
+ The items you pass throught this way are accessible in Flash.
+
 Tips
 
  Opera appears to have issues with long paths to SWF files - I am unclear what the percise limit is by 66 character after the / works, whereas 73 doesn't. The symptom of this is the movie 'loads' but it does auto-play. If you right click it and press play it works.
