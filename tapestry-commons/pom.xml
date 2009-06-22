@@ -170,11 +170,9 @@
     </distributionManagement>
 
     <issueManagement>
-          <system>jira</system>
-          <url>http://tapestry.formos.com/jira/browse/IOKOCOMMONS</url>
-      </issueManagement>
-
-
+        <system>jira</system>
+        <url>http://tapestry.formos.com/jira/browse/IOKOCOMMONS</url>
+    </issueManagement>
 
 
     <repositories>
@@ -295,6 +293,21 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-jxr-plugin</artifactId>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-report-plugin</artifactId>
+                        <reportSets>
+                            <reportSet>
+                                <reports>
+                                    <report>report-only</report>
+                                </reports>
+                            </reportSet>
+                        </reportSets>
                     </plugin>
                 </plugins>
             </reporting>
