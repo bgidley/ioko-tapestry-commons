@@ -1,4 +1,8 @@
-Tapestry Caching
+Introduction
+
+ This component provides caching of the generated HTML for a page snippet in EHCache. This is mainly useful if you have expensive (to render) areas of a page that you cannot fully cache (e.g. if the page is personalised).
+
+ Using ehcache as the cache backed gives you many options for configuration and management (e.g. you can use JMX to flush the caches).
 
 Usage
 
