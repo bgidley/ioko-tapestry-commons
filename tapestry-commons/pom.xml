@@ -88,6 +88,10 @@
                 <groupId>com.atlassian.maven.plugins</groupId>
                 <artifactId>maven-clover2-plugin</artifactId>
                 <configuration>
+                    <generateHistorical>true</generateHistorical>
+                    <generatePdf>false</generatePdf>
+                    <generateXml>true</generateXml>
+                    <generateHtml>true</generateHtml>
                 </configuration>
                 <executions>
                     <execution>
