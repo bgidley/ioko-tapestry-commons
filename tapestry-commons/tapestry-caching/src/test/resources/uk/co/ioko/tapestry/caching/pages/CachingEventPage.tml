@@ -1,4 +1,3 @@
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <!--
   ~ Copyright (c) 2009 ioko365 Ltd
   ~
@@ -17,12 +16,44 @@
   ~     You should have received a copy of the GNU General Public License
   ~     along with ioko tapestry-commons.  If not, see <http://www.gnu.org/licenses/>.
   -->
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+
+<head>
 
 
-<suite name="All">
-    <test name="unit">
-        <packages>
-            <package name="uk.co.ioko.tapestry.caching.pages"/>
-        </packages>
-    </test>
-</suite>
+</head>
+
+<body>
+
+<p>Caching test page</p>
+
+<h2>Live</h2>
+<dl id="live">
+    <dt>Time Now</dt>
+    <dd>${now}</dd>
+    <dt>Counter</dt>
+    <dd>${count}</dd>
+</dl>
+
+<h2>Cached regardless</h2>
+<dl id="cached" t:type="ioko/Cache">
+    <dt>Time in cache</dt>
+    <dd>${now}</dd>
+    <dt>Counter</dt>
+    <dd>${count}</dd>
+</dl>
+
+<h2>Cached with counter as suffix</h2>
+<dl id="cachedSuffix" t:type="ioko/Cache" cacheKeySuffix="prop:count">
+    <dt>Time in cache</dt>
+    <dd>${now}</dd>
+    <dt>Counter</dt>
+    <dd>${count}</dd>
+</dl>
+
+
+<div>
+    <a id="increment" href="#" t:type="eventLink" event="increment">Increment</a>
+</div>
+</body>
+</html>

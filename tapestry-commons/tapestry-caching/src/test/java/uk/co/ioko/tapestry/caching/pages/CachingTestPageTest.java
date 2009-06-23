@@ -17,7 +17,7 @@
  *     along with ioko tapestry-commons.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package uk.co.ioko.tapestry.caching.components;
+package uk.co.ioko.tapestry.caching.pages;
 
 import org.apache.tapestry5.dom.Document;
 import org.apache.tapestry5.dom.Element;
