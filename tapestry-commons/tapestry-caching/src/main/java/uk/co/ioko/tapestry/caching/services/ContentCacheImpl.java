@@ -23,6 +23,8 @@ import net.sf.ehcache.CacheManager;
 import net.sf.ehcache.Ehcache;
 import net.sf.ehcache.Element;
 import net.sf.ehcache.management.ManagementService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import uk.co.ioko.tapestry.caching.services.support.CacheRegion;
 import uk.co.ioko.tapestry.caching.services.support.CachedContent;
 
@@ -39,6 +41,8 @@ import java.net.URL;
  */
 public class ContentCacheImpl implements ContentCache {
 
+	private static final Logger logger = LoggerFactory.getLogger(ContentCacheImpl.class);
+
 	private static final String CACHE_NAME = "content";
 
 	private static final String CACHE_SEPARATOR = "-";
@@ -53,7 +57,13 @@ public class ContentCacheImpl implements ContentCache {
 		}
 		cacheManager = new CacheManager(url);
 		cacheManager.setName("TapestryContentCache");
-		registerMBeans(cacheManager);
+		try {
+			registerMBeans(cacheManager);
+		} catch (net.sf.ehcache.CacheException e) {
+			logger.warn(
+					"Unable to register JMX. This is normal during unit testing, bad in production. Error is logged at debug level.");
+			logger.debug("Unable to register JMX", e);
+		}
 	}
 
 	private void registerMBeans(CacheManager cacheManager) {

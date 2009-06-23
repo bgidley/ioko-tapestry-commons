@@ -92,6 +92,7 @@
                     <generatePdf>false</generatePdf>
                     <generateXml>true</generateXml>
                     <generateHtml>true</generateHtml>
+                    <historyDir>${user.home}/history/${project.artifact}</historyDir>
                 </configuration>
                 <executions>
                     <execution>
@@ -337,6 +338,7 @@
                             <generatePdf>false</generatePdf>
                             <generateXml>true</generateXml>
                             <generateHtml>true</generateHtml>
+                            <historyDir>${user.home}/history/${project.artifact}</historyDir>
                         </configuration>
                     </plugin>
                 </plugins>
