@@ -33,8 +33,10 @@ public class CachingEventPage {
 
 	private static final Logger logger = LoggerFactory.getLogger(CachingEventPage.class);
 
+	private Date now;
+
 	public Date getNow() {
-		return new Date();
+		return now;
 	}
 
 	@Property
@@ -50,5 +52,7 @@ public class CachingEventPage {
 		if (count == null) {
 			count = 0;
 		}
+
+		this.now = new Date();
 	}
 }

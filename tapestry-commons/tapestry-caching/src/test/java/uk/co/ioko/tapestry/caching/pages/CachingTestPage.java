@@ -25,8 +25,16 @@ import java.util.Date;
  * Created by IntelliJ IDEA. User: ben Date: Mar 25, 2009 Time: 4:47:32 PM
  */
 public class CachingTestPage {
+	private Date now;
 
 	public Date getNow() {
-		return new Date();
+		return now;
 	}
+
+	public void setupRender() {
+
+
+		this.now = new Date();
+	}
+
 }
