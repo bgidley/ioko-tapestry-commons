@@ -43,6 +43,13 @@ public class RenderSupportPageTest {
 		Assert.assertTrue(headText.contains("components/RenderSupport.js"));
 		Assert.assertTrue(headText.contains(
 				"components/RenderSupport.css"));
+		Assert.assertTrue(headText.contains("RenderSupportClassPath.js"));
+		Assert.assertTrue(page1.toString().contains("renderSupportInitJsonObject\":[{\"Bob\":[\"the builder\"]}]"));
+		Assert.assertTrue(page1.toString().contains("\"renderSupportInitJsonArray\":[[\"parnsip\",\"buddy\"]]"));
+		Assert.assertTrue(page1.toString().contains("\"renderSupportInitParams\":[[\"sprout\",\"toby\"]]"));
+		Assert.assertTrue(page1.toString().contains("var addedScript;"));
+		Assert.assertTrue(page1.toString().contains("var addedScriptVariable;"));
+		Assert.assertTrue(page1.toString().contains("$('name').activate();"));
 
 		Document page2 = pageTester.renderPage("RenderSupportPage");
 		Element head2 = (Element) page2.getRootElement().getChildren().get(0);
@@ -52,6 +59,12 @@ public class RenderSupportPageTest {
 		Assert.assertTrue(headText2.contains(
 				"components/RenderSupport.css"));
 
-
+		Assert.assertTrue(headText2.contains("RenderSupportClassPath.js"));
+		Assert.assertTrue(page2.toString().contains("renderSupportInitJsonObject\":[{\"Bob\":[\"the builder\"]}]"));
+		Assert.assertTrue(page2.toString().contains("\"renderSupportInitJsonArray\":[[\"parnsip\",\"buddy\"]]"));
+		Assert.assertTrue(page2.toString().contains("\"renderSupportInitParams\":[[\"sprout\",\"toby\"]]"));
+		Assert.assertTrue(page2.toString().contains("var addedScript;"));
+		Assert.assertTrue(page2.toString().contains("var addedScriptVariable;"));
+		Assert.assertTrue(page2.toString().contains("$('name').activate();"));
 	}
 }

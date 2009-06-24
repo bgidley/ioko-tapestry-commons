@@ -18,4 +18,7 @@
   -->
 <div id="renderSupport">
     <p id="now">${now}</p>
+    <p>
+        <input id="name" type="text" value="steve"></input>
+    </p>
 </div>

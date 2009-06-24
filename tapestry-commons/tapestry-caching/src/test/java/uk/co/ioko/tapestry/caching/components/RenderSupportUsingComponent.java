@@ -19,10 +19,18 @@
 
 package uk.co.ioko.tapestry.caching.components;
 
+import org.apache.tapestry5.ComponentResources;
+import org.apache.tapestry5.RenderSupport;
+import org.apache.tapestry5.FieldFocusPriority;
+import org.apache.tapestry5.annotations.Environmental;
 import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
 import org.apache.tapestry5.annotations.IncludeStylesheet;
+import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.json.JSONArray;
+import org.apache.tapestry5.json.JSONObject;
 
 import java.util.Date;
+
 
 /**
  * This is a test tapestry component that users render support a lot (and pointlessly)
@@ -33,7 +41,36 @@ import java.util.Date;
 @IncludeStylesheet("RenderSupport.css")
 public class RenderSupportUsingComponent {
 
+	@Environmental
+	private RenderSupport renderSupport;
+
+	@Inject
+	private ComponentResources componentResources;
+
 	public Date getNow(){
 		return new Date();
+	}
+
+	public void setupRender(){
+		renderSupport.addClasspathScriptLink("/RenderSupportClassPath.js");
+
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.append("Bob", "the builder");
+		renderSupport.addInit("renderSupportInitJsonObject", jsonObject);
+
+		JSONArray jsonArray = new JSONArray();
+		jsonArray.put("parnsip");
+		jsonArray.put("buddy");
+		renderSupport.addInit("renderSupportInitJsonArray", jsonArray);
+		renderSupport.addInit("renderSupportInitParams", "sprout", "toby");
+
+		renderSupport.addScript("var addedScript;");
+
+		renderSupport.addScript("var %s;", "addedScriptVariable");
+
+		String clientId = renderSupport.allocateClientId(componentResources);
+
+		renderSupport.autofocus(FieldFocusPriority.OPTIONAL, "name");
+
 	}
 }

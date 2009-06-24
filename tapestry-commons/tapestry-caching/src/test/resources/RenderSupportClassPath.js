@@ -16,16 +16,6 @@
  *     You should have received a copy of the GNU General Public License
  *     along with ioko tapestry-commons.  If not, see <http://www.gnu.org/licenses/>.
  */
-// Noop
 
-Tapestry.Initializer.renderSupportInitJsonObject(object){
+// RenderSupportClassPath.js
 
-}
-
-Tapestry.Initializer.renderSupportInitJsonArray(cat, dog){
-
-}
-
-Tapestry.Initializer.renderSupportInitParams(cat, dog){
-
-}
