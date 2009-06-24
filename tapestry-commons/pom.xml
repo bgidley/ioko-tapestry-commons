@@ -98,6 +98,7 @@ mi2KX50bV3fycqvgMxTHEGoI2KRTCmUWqaNouR<7YKjlim
 qpNQwXorqQPQmNqMOmntxrrrQpnmRPNMqQWunQrOwsstrs
 vTUvStUoSUwSxssSumMnmqmUUnoqrrvoummmmmUUnoqrrv
 oummmmmUUWW9WflhljqXmbpqovjZljjlkpUUnm]]></license>
+                    <contextFilters>catch,finally</contextFilters>
                 </configuration>
                 <executions>
                     <execution>
@@ -349,6 +350,7 @@ mi2KX50bV3fycqvgMxTHEGoI2KRTCmUWqaNouR<7YKjlim
 qpNQwXorqQPQmNqMOmntxrrrQpnmRPNMqQWunQrOwsstrs
 vTUvStUoSUwSxssSumMnmqmUUnoqrrvoummmmmUUnoqrrv
 oummmmmUUWW9WflhljqXmbpqovjZljjlkpUUnm]]></license>
+                            <contextFilters>catch,finally</contextFilters>
                         </configuration>
                     </plugin>
                 </plugins>
