@@ -21,6 +21,7 @@ package uk.co.ioko.tapestry.caching.services;
 
 import org.apache.tapestry5.ioc.Configuration;
 import org.apache.tapestry5.ioc.ServiceBinder;
+import org.apache.tapestry5.ioc.MappedConfiguration;
 import org.apache.tapestry5.ioc.services.Coercion;
 import org.apache.tapestry5.ioc.services.CoercionTuple;
 import org.apache.tapestry5.services.LibraryMapping;
@@ -34,7 +35,7 @@ public class CacheModule {
 	public static void bind(ServiceBinder binder) {
 		binder.bind(ContentCache.class, ContentCacheImpl.class);
 	}
-	
+
 
 	public static void contributeComponentClassResolver(Configuration<LibraryMapping> configuration) {
 		configuration.add(new LibraryMapping("ioko", "uk.co.ioko.tapestry.caching"));
@@ -51,5 +52,10 @@ public class CacheModule {
 			}
 		};
 		configuration.add(new CoercionTuple<String, CacheRegion>(String.class, CacheRegion.class, stringToCacheRegion));
+	}
+
+
+	public static void contributeFactoryDefaults(MappedConfiguration<String, String> configuration) {
+		configuration.add("contentCache.cacheConfigurationFile", "/ehcacheTapestryContent.xml");
 	}
 }

@@ -23,6 +23,7 @@ import net.sf.ehcache.CacheManager;
 import net.sf.ehcache.Ehcache;
 import net.sf.ehcache.Element;
 import net.sf.ehcache.management.ManagementService;
+import org.apache.tapestry5.ioc.annotations.Symbol;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import uk.co.ioko.tapestry.caching.services.support.CacheRegion;
@@ -47,11 +48,12 @@ public class ContentCacheImpl implements ContentCache {
 
 	private static final String CACHE_SEPARATOR = "-";
 
+
 	private CacheManager cacheManager;
 
-	public ContentCacheImpl() {
+	public ContentCacheImpl(@Symbol("contentCache.cacheConfigurationFile") String configurationFileName) {
 		// create a new CacheManager from the config file
-		URL url = this.getClass().getResource("/ehcacheTapestryContent.xml");
+		URL url = this.getClass().getResource(configurationFileName);
 		if (url == null) {
 			url = this.getClass().getResource("/ehcacheTapestryContent-fallback.xml");
 		}
