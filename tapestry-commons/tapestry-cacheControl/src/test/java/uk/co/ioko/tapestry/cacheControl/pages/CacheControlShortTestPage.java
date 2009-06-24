@@ -25,10 +25,10 @@ import uk.co.ioko.tapestry.cacheControl.annotations.CacheType;
 import java.util.Date;
 
 /**
- * Created by IntelliJ IDEA. User: ben Date: Jun 17, 2009 Time: 3:22:20 PM
+ * Created by IntelliJ IDEA. User: ben Date: Jun 16, 2009 Time: 9:03:52 AM
  */
-@CacheControl(cacheType = CacheType.NEVER)
-public class NotCachedTestPage {
+@CacheControl(cacheType = CacheType.SHORT)
+public class CacheControlShortTestPage {
 	public Date getNow() {
 		return new Date();
 	}

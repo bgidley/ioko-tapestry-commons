@@ -74,6 +74,9 @@ public class CacheControlModule {
 	public static void contributeTypeCoercer(Configuration<CoercionTuple> configuration) {
 		Coercion<String, CacheType> coercion = new Coercion<String, CacheType>() {
 			public CacheType coerce(String input) {
+				if (input == CacheType.NONE.name()) {
+					return CacheType.NONE;
+				}
 				if (input == CacheType.NEVER.name()) {
 					return CacheType.NEVER;
 				}

@@ -17,28 +17,19 @@
  *     along with ioko tapestry-commons.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package uk.co.ioko.tapestry.cacheControl.services;
+package uk.co.ioko.tapestry.cacheControl.pages;
 
-import org.apache.tapestry5.SymbolConstants;
-import org.apache.tapestry5.ioc.MappedConfiguration;
-import org.apache.tapestry5.ioc.annotations.SubModule;
-
+import uk.co.ioko.tapestry.cacheControl.annotations.CacheControl;
 import uk.co.ioko.tapestry.cacheControl.annotations.CacheType;
 
+import java.util.Date;
+
 /**
- * Created by IntelliJ IDEA. User: ben Date: Jun 16, 2009 Time: 9:05:00 AM
+ * Created by IntelliJ IDEA. User: ben Date: Jun 16, 2009 Time: 9:03:52 AM
  */
-@SubModule(CacheControlModule.class)
-public class TestModule {
-
-	public static void contributeApplicationDefaults(MappedConfiguration<String, String> configuration) {
-
-		configuration.add(SymbolConstants.APPLICATION_VERSION, "1.0");
-		configuration.add(SymbolConstants.PRODUCTION_MODE, "false");
-		configuration.add("cacheControl.short", String.valueOf(3));
-		configuration.add("cacheControl.medium", String.valueOf(5));
-		configuration.add("cacheControl.long", String.valueOf(7));
-		configuration.add("cacheControl.farFuture", String.valueOf(9));
+@CacheControl(cacheType = CacheType.NONE)
+public class CacheControlNoneTestPage {
+	public Date getNow() {
+		return new Date();
 	}
-	
 }

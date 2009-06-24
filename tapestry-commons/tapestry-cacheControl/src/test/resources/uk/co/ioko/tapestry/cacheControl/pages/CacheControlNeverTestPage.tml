@@ -21,13 +21,13 @@
 <head>
 </head>
 <body>
-<p>Not Caching test page</p>
+<p>None caching test page</p>
 
-<dl id="live">
+<dl id="neverlive">
     <dt>Time Now</dt>
     <dt>${now}</dt>
 </dl>
 
-<a href="#" t:type="pageLink" page="CacheControlTestPage">Refresh</a>
+<a href="#" t:type="pageLink" page="CacheControlNeverTestPage">Refresh</a>
 </body>
 </html>
