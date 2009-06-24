@@ -21,7 +21,10 @@ public class SwfObjectTest {
 		Document document = pageTester.renderPage("SwfObjectTestPage");
 		Assert.assertNotNull(document);
 
+		String content = document.toString();
 
+		// Check for non express install variant
+		Assert.assertTrue(content.contains("[\"/assets/app/1.0/pages/SwfObjectTest.swf\",\"swfObjectVariant\",\"300\",\"300\",\"10.0.22\",false,false,{\"Cat\":[\"Parsnip\"],\"Vegetable\":[\"Turnip\"]},{\"Cat\":[\"Parsnip\"],\"Vegetable\":[\"Turnip\"]}]"));
 		
 		
 	}

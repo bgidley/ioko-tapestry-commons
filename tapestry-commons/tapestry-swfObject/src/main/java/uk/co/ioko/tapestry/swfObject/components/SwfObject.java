@@ -48,6 +48,9 @@ public class SwfObject {
 	@Path("expressInstall.swf")
 	private Asset expressInstall;
 
+	@Parameter
+	private Boolean useExpressInstall = true;
+
 	/**
 	 * The flash vars to pass in javascript array format
 	 */
@@ -92,10 +95,10 @@ public class SwfObject {
 		// 4
 		parameters.put(version);
 		// 5
-		if (expressInstall == null) {
-			parameters.put(false);
-		} else {
+		if (useExpressInstall) {
 			parameters.put(expressInstall.toString());
+		} else {
+			parameters.put(false);
 		}
 		// 6
 		if (flashVars == null) {

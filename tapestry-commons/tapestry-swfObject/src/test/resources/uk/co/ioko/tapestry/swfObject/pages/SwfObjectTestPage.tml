@@ -16,5 +16,11 @@
 <h2>What does flash think has happend</h2>
 <div id="flashvarResults">
 </div>
+
+<h2>Final Variant to catch other cases</h2>
+<div t:id="swfObjectVariant" t:type="ioko/swfObject" width="300" height="300" swf="literal:/assets/app/1.0/pages/SwfObjectTest.swf"
+     attributes="flashvars" params="flashvars" useExpressInstall="false">
+    <p>Non Flash Content</p>
+</div>
 </body>
 </html>
