@@ -93,6 +93,11 @@
                     <generateXml>true</generateXml>
                     <generateHtml>true</generateHtml>
                     <historyDir>${user.home}/history/${project.artifact}</historyDir>
+                    <license><![CDATA[qOpPtrkGUADqDiteXtCOjdEqQPqsrGQHRvRWrPQlldbqON
+mi2KX50bV3fycqvgMxTHEGoI2KRTCmUWqaNouR<7YKjlim
+qpNQwXorqQPQmNqMOmntxrrrQpnmRPNMqQWunQrOwsstrs
+vTUvStUoSUwSxssSumMnmqmUUnoqrrvoummmmmUUnoqrrv
+oummmmmUUWW9WflhljqXmbpqovjZljjlkpUUnm]]></license>
                 </configuration>
                 <executions>
                     <execution>
@@ -339,6 +344,11 @@
                             <generateXml>true</generateXml>
                             <generateHtml>true</generateHtml>
                             <historyDir>${user.home}/history/${project.artifact}</historyDir>
+                            <license><![CDATA[qOpPtrkGUADqDiteXtCOjdEqQPqsrGQHRvRWrPQlldbqON
+mi2KX50bV3fycqvgMxTHEGoI2KRTCmUWqaNouR<7YKjlim
+qpNQwXorqQPQmNqMOmntxrrrQpnmRPNMqQWunQrOwsstrs
+vTUvStUoSUwSxssSumMnmqmUUnoqrrvoummmmmUUnoqrrv
+oummmmmUUWW9WflhljqXmbpqovjZljjlkpUUnm]]></license>
                         </configuration>
                     </plugin>
                 </plugins>
