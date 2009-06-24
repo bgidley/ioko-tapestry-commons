@@ -48,6 +48,8 @@ public class RenderSupportPlayer {
 				Object[] methodParams = methodCall.getParams();
 				try {
 					Method method = renderSupportType.getMethod(methodCall.getMethodName(), methodCall.getParamTypes());
+					// Consider adding a (Object) here.
+					// It is getting confused between Object[] and Object...
 					method.invoke(renderSupport, methodParams);
 				}
 				catch (NoSuchMethodException e) {

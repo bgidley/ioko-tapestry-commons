@@ -34,7 +34,7 @@ public class CachingEventPageTest {
 	@Test
 	public void testCaching() throws InterruptedException {
 
-		PageTester pageTester = new PageTester("uk.co.ioko.tapestry.caching", "Cache", "src/test/webapp");
+		PageTester pageTester = new PageTester("uk.co.ioko.tapestry.caching", "Test", "src/test/webapp");
 		Document page1 = pageTester.renderPage("CachingEventPage");
 		Assert.assertNotNull(page1);
 

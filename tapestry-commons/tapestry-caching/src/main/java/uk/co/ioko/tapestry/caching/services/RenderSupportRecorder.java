@@ -101,7 +101,7 @@ public class RenderSupportRecorder implements RenderSupport {
 
 	public void addScriptLink(String... scriptURLs) {
 		Method method = getMethod("addScriptLink", String[].class);
-		recordMethodCall(method, (Object[]) scriptURLs);
+		recordMethodCall(method, new Object[] {scriptURLs});
 		renderSupport.addScriptLink(scriptURLs);
 	}
 
