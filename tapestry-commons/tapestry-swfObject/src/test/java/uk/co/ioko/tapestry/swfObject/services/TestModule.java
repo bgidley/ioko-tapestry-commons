@@ -34,6 +34,6 @@ public class TestModule {
 
 		configuration.add(SymbolConstants.APPLICATION_VERSION, "1.0");
 		configuration.add(SymbolConstants.PRODUCTION_MODE, "false");
-		configuration.add(SymbolConstants.GZIP_COMPRESSION_ENABLED, "false");
+		//configuration.add(SymbolConstants.GZIP_COMPRESSION_ENABLED, "false");
 	}
 }

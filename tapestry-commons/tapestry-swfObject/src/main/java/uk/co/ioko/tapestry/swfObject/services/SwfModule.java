@@ -14,4 +14,9 @@ public class SwfModule {
 	public static void contributeComponentClassResolver(Configuration<LibraryMapping> configuration) {
 		configuration.add(new LibraryMapping("ioko", "uk.co.ioko.tapestry.swfObject"));
 	}
+
+	public static void contributeResponseCompressionAnalyzer(Configuration<String> configuration){
+		configuration.add("application/x-shockwave-flash");
+
+	}
 }

@@ -30,6 +30,6 @@ Usage
 
 Tips
 
- Opera appears to have issues with long paths to SWF files - I am unclear what the percise limit is by 66 character after the / works, whereas 73 doesn't. The symptom of this is the movie 'loads' but it does auto-play. If you right click it and press play it works.
+ Opera appears to have issues with long paths to SWF files - I am unclear what the percise limit is. 66 character after the / works, whereas 73 doesn't. The symptom of this is the movie 'loads' but it does auto-play. If you right click it and press play it works.
 
- Firefox has similar issues with load when tapestry gzip support is enabled AND you serve the flash movie as an asset. 
+ Firefox has similar issues with load when tapestry gzip support is enabled AND you serve the flash movie as an asset. Therefore this module will contribute into tapestry to tell it not to gzip swf file.
