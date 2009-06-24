@@ -1,0 +1,31 @@
+Development
+
+ To work on this project you need to
+
+ * Get a tapestry 360 {{{http://tapestry.formos.com/svnadmin/}Subversion Account}}
+ 
+ * Agree to assign copyright to ioko
+
+Checking/out and building
+
+ The project is built using Maven 2. So simply check out the trunk and type mvn. That will build it and run the unit tests.
+
+* Common Issues
+
+ It can't find firefox to run the unit tests
+
+ * The unit tests use selenium to run firefox. You must have firefox 3.x installed
+
+ It fails on the swfObject tests
+
+ * The swfObject tests require firefox has the flash plugin (version 10 or newer)
+
+Coding Standards
+
+ Follow the Sun Coding Guidelines - {{http://java.sun.com/docs/codeconv/html/CodeConvTOC.doc.html}}
+
+ Test everything - we are aiming at 100% test coverage
+
+Setting up your IDE
+
+ In IntelliJ just open the pom.xml. In eclipse use mvn eclipse:eclipse. We are using Clover so you can install the Clover plugin for your IDE. The open source license key is in the pom.xml. NOTE you cannot use this key except on open source projects.

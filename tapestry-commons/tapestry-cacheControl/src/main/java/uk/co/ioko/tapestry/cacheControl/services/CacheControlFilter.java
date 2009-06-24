@@ -113,6 +113,7 @@ public class CacheControlFilter implements PageRenderRequestFilter {
 	private void addNeverHeaders() {
 		response.setHeader(CACHE_CONTROL_HEADER, "no-cache");
 		response.setHeader(PRAGMA_HEADER, "No-Cache");
+		
 	}
 
 	/**

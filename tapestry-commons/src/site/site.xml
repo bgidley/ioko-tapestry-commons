@@ -52,6 +52,9 @@
         <menu ref="modules"/>
         <menu ref="reports"/>
         <menu ref="parentProject" inherit="top"/>
+        <menu name="Developers">
+            <item name="Development Guide" href="development.html"/>
+        </menu>
 
     </body>
 </project>
