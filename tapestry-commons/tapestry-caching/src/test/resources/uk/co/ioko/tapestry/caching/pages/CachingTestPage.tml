@@ -37,5 +37,10 @@
     <dt>Time in cache</dt>
     <dd>${now}</dd>
 </dl>
+
+<dl id="cachedWithKey" t:type="ioko/Cache" cacheKey="testCacheKey">
+    <dt>Time in cache</dt>
+    <dd>${now}</dd>
+</dl>
 </body>
 </html>

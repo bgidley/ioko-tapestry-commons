@@ -44,9 +44,11 @@ public class CachingTestPageTest {
 		String cachedDate = ((Element) caching.getChildren().get(1)).getChildMarkup();
 		Element live = document.getElementById("live");
 		String liveDate = ((Element) live.getChildren().get(1)).getChildMarkup();
+		Element cachedKey = document.getElementById("cachedWithKey");
+		String cachedWithKeyDate = ((Element)cachedKey.getChildren().get(1)).getChildMarkup();
 
-		// The two dates should be nearly equal but we can't safely assert this. 
-
+		Assert.assertEquals(liveDate, cachedDate);
+		Assert.assertEquals(liveDate, cachedWithKeyDate);
 
 		Thread.sleep(1000);
 
@@ -58,10 +60,14 @@ public class CachingTestPageTest {
 		String raw = rawCached.toString();
 		int indexOfDd = raw.lastIndexOf("<dd>");
 		int indexOfCloseDd = raw.lastIndexOf("</dd>");
-
-
-
 		String cachedDate2 = raw.substring(indexOfDd + 4, indexOfCloseDd);
+
+		Raw rawCachedKey =  (Raw) ((Element) document2.getRootElement().getChildren().get(1)).getChildren().get(3);
+		String rawKey = rawCachedKey.toString();
+		indexOfDd = rawKey.lastIndexOf("<dd>");
+		indexOfCloseDd = rawKey.lastIndexOf("</dd>");
+		String cachedWithKeyDate2 = rawKey.substring(indexOfDd + 4, indexOfCloseDd);
+
 		Element live2 = document2.getElementById("live");
 		String liveDate2 = ((Element) live2.getChildren().get(1)).getChildMarkup();
 
@@ -69,5 +75,7 @@ public class CachingTestPageTest {
 		Assert.assertTrue(!liveDate2.equals(liveDate));
 		// But the cached date should not have changed
 		Assert.assertEquals(cachedDate, cachedDate2);
+
+		Assert.assertEquals(cachedWithKeyDate, cachedWithKeyDate2);
 	}
 }
