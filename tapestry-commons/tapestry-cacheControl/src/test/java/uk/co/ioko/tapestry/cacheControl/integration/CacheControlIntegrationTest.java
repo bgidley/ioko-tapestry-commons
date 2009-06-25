@@ -39,14 +39,14 @@ public class CacheControlIntegrationTest extends AbstractIntegrationTestSuite {
 		String initialDate = getText("//dl[@id='shortlive']/dt[2]");
 
 		// Wait 1 seconds
-		Thread.sleep(1000);
+		Thread.sleep(3000);
 
 		// Get the contents of the date time field - this should be cached
 		open(BASE_URL + "CacheControlShortTestPage");
 		String interimDate = getText("//dl[@id='shortlive']/dt[2]");
 
 		// Wait 3 seconds - short cache is 3 seconds
-		Thread.sleep(4000);
+		Thread.sleep(3000);
 
 		// Get the contents of the date time field - this should be expired and refreshed
 		open(BASE_URL + "CacheControlShortTestPage");

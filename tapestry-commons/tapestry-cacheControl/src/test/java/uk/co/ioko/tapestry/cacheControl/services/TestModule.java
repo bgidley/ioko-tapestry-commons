@@ -35,7 +35,7 @@ public class TestModule {
 
 		configuration.add(SymbolConstants.APPLICATION_VERSION, "1.0");
 		configuration.add(SymbolConstants.PRODUCTION_MODE, "false");
-		configuration.add("cacheControl.short", String.valueOf(4));
+		configuration.add("cacheControl.short", String.valueOf(5));
 		configuration.add("cacheControl.medium", String.valueOf(5));
 		configuration.add("cacheControl.long", String.valueOf(7));
 		configuration.add("cacheControl.farFuture", String.valueOf(9));
