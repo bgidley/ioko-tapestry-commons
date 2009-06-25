@@ -21,7 +21,7 @@
 <head>
 </head>
 <body>
-<p>Long caching test page</p>
+<p>Short caching test page</p>
 
 <dl id="shortlive">
     <dt>Time Now</dt>
