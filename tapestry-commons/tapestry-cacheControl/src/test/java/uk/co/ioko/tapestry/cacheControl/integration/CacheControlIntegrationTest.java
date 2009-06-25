@@ -38,15 +38,15 @@ public class CacheControlIntegrationTest extends AbstractIntegrationTestSuite {
 		open(BASE_URL + "CacheControlShortTestPage");
 		String initialDate = getText("//dl[@id='shortlive']/dt[2]");
 
-		// Wait 2 seconds
-		Thread.sleep(2000);
+		// Wait 1 seconds
+		Thread.sleep(1000);
 
 		// Get the contents of the date time field - this should be cached
 		open(BASE_URL + "CacheControlShortTestPage");
 		String interimDate = getText("//dl[@id='shortlive']/dt[2]");
 
-		// Wait 2 seconds - short cache is 3 seconds
-		Thread.sleep(2000);
+		// Wait 3 seconds - short cache is 3 seconds
+		Thread.sleep(3000);
 
 		// Get the contents of the date time field - this should be expired and refreshed
 		open(BASE_URL + "CacheControlShortTestPage");
@@ -64,14 +64,14 @@ public class CacheControlIntegrationTest extends AbstractIntegrationTestSuite {
 		String initialDate = getText("//dl[@id='mediumlive']/dt[2]");
 
 		// Wait 3 seconds
-		Thread.sleep(4000);
+		Thread.sleep(3000);
 
 		// Get the contents of the date time field - this should be cached
 		open(BASE_URL + "CacheControlMediumTestPage");
 		String interimDate = getText("//dl[@id='mediumlive']/dt[2]");
 
-		// Wait 2 seconds - medium cache is 5 seconds
-		Thread.sleep(2000);
+		// Wait 3 seconds - medium cache is 5 seconds
+		Thread.sleep(3000);
 
 		// Get the contents of the date time field - this should be expired and refreshed
 		open(BASE_URL + "CacheControlMediumTestPage");
@@ -89,14 +89,14 @@ public class CacheControlIntegrationTest extends AbstractIntegrationTestSuite {
 		String initialDate = getText("//dl[@id='longlive']/dt[2]");
 
 		// Wait 5 seconds
-		Thread.sleep(6000);
+		Thread.sleep(5000);
 
 		// Get the contents of the date time field - this should be cached
 		open(BASE_URL + "CacheControlLongTestPage");
 		String interimDate = getText("//dl[@id='longlive']/dt[2]");
 
-		// Wait 2 seconds - long cache is 7 seconds
-		Thread.sleep(2000);
+		// Wait 3 seconds - long cache is 7 seconds
+		Thread.sleep(3000);
 
 		// Get the contents of the date time field - this should be expired and refreshed
 		open(BASE_URL + "CacheControlLongTestPage");
@@ -113,15 +113,15 @@ public class CacheControlIntegrationTest extends AbstractIntegrationTestSuite {
 		open(BASE_URL + "CacheControlFarFutureTestPage");
 		String initialDate = getText("//dl[@id='farfuturelive']/dt[2]");
 
-		// Wait 8 seconds
-		Thread.sleep(8000);
+		// Wait 7 seconds
+		Thread.sleep(7000);
 
 		// Get the contents of the date time field - this should be cached
 		open(BASE_URL + "CacheControlFarFutureTestPage");
 		String interimDate = getText("//dl[@id='farfuturelive']/dt[2]");
 
-		// Wait 2 seconds - far future cache is 9 seconds
-		Thread.sleep(2000);
+		// Wait 3 seconds - far future cache is 9 seconds
+		Thread.sleep(3000);
 
 		// Get the contents of the date time field - this should be expired and refreshed
 		open(BASE_URL + "CacheControlFarFutureTestPage");
