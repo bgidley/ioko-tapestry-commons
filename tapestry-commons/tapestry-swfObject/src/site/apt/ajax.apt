@@ -1,0 +1,26 @@
+How to get Flash (or Flex) talking AJAX to Tapestry Pages
+
+ If you want your flash component to talk to an event handler in your tapestry page and then process the response. The sequence will be
+
+ * Tapestry renders page with swfobject on
+
+ * SwfObject has event URL's passed into it via flashvars
+
+ * Flex calls those url's directly using it http client
+
+ * Tapestry fires the event and the event returns a JSON block
+
+ * Flex parses the JSON block using ASCorelib {{http://code.google.com/p/as3corelib/}}
+
+
+* A worked example
+
+ This worked example is part of the unit tests for this library. To see this working checkout the code and in this project type
+
++--
+   mvn jetty:run
++--
+
+ Jetty will start and on {{http://localhost:8080/SwfObjectAjaxPage}} you will see the working example.
+
+ 
