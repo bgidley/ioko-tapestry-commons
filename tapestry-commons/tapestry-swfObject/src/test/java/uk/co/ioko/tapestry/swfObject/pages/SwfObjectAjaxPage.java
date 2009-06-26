@@ -20,14 +20,20 @@
 package uk.co.ioko.tapestry.swfObject.pages;
 
 import org.apache.tapestry5.ComponentResources;
-import org.apache.tapestry5.util.TextStreamResponse;
+import org.apache.tapestry5.RenderSupport;
+import org.apache.tapestry5.annotations.Environmental;
 import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.annotations.InjectComponent;
+import org.apache.tapestry5.annotations.IncludeJavaScriptLibrary;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.json.JSONObject;
+import org.apache.tapestry5.util.TextStreamResponse;
+import uk.co.ioko.tapestry.swfObject.components.SwfObject;
 
 /**
  * Created by IntelliJ IDEA. User: ben Date: Jun 24, 2009 Time: 3:42:11 PM
  */
+@IncludeJavaScriptLibrary("readAjaxStatus.js")
 public class SwfObjectAjaxPage {
 
 	@Property
@@ -36,10 +42,21 @@ public class SwfObjectAjaxPage {
 	@Inject
 	private ComponentResources componentResources;
 
+	@Environmental
+	private RenderSupport renderSupport;
+
+	@InjectComponent
+	private SwfObject swfObject;
+
 
 	public void setupRender() {
 		flashvars = new JSONObject();
 		flashvars.append("ajaxRequestUrl", componentResources.createEventLink("ajaxRequest").toAbsoluteURI() );
+
+	}
+
+	public void afterRender() {
+		renderSupport.addInit("readAjaxStatus", swfObject.getClientId(), "ajaxResponse");
 	}
 
 	/**

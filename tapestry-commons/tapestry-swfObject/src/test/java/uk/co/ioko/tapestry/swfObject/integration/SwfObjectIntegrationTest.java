@@ -45,4 +45,17 @@ public class SwfObjectIntegrationTest extends AbstractIntegrationTestSuite {
 
 	}
 
+	@Test(groups = "flashRequired")
+	public void testAjax() throws Exception {
+		open(BASE_URL + "SwfObjectAjaxPage");
+
+		// We need to wait for flash to load and the page javascript to get the flash params from it
+		waitForCondition("var contents = selenium.getText(\"//p[@id='ajaxResponse']\"); contents != \"\";", "5000");
+
+		assertText("//p[@id='ajaxResponse']", "Parsnip");
+
+
+
+	}
+
 }

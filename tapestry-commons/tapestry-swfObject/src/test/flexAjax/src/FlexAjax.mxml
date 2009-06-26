@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" creationComplete="setupAjax()">
+	<mx:Script>
+		<![CDATA[
+			import mx.binding.utils.BindingUtils;
+			import mx.controls.Alert;
+			import uk.co.ioko.tapestry.swfObject.AjaxHelper;
+			
+			private var ajaxHelper:AjaxHelper;
+			
+			[Bindable]
+			public var ajaxResponseText:String = "";
+		
+			public function processResult(object:Object):void{
+				ajaxResponseText = object.Cat[0];
+			}
+			
+			public function getAjaxResponseText():String{
+				return ajaxResponseText;
+			}
+			
+			public function getLastData():Object{
+				return ajaxHelper.lastData.Cat[0];
+			}
+			
+			private function setupAjax():void{
+				ExternalInterface.addCallback("getAjaxResponse", getAjaxResponseText);
+				ExternalInterface.addCallback("getLastData", getLastData);
+
+				
+				ajaxHelper = new AjaxHelper(Application.application.parameters.ajaxRequestUrl, processResult);
+				ajaxHelper.ExecuteAjax();		
+			}
+		]]>
+	</mx:Script>
+	<mx:Label x="33" y="59" id="ajaxLabel" text="AJAX Response:" width="97"/>
+	<mx:Text x="33" y="85" id="ajaxResponse" width="317" height="289" text="{ajaxResponseText}"/>
+</mx:Application>

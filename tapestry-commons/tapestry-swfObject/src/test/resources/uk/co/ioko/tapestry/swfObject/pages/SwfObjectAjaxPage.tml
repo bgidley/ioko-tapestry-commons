@@ -21,9 +21,12 @@
 <body>
 <h1>Swf Object Test Page</h1>
 <h2>Asset loaded swf</h2>
-<div t:id="swfObject" t:type="ioko/swfObject" width="300" height="300" swf="asset:SwfObjectTest.swf"
+<div t:id="swfObject" t:type="ioko/swfObject" width="300" height="300" swf="asset:FlexAjax.swf"
      flashvars="flashVars">
     <p>Non Flash Content</p>
+</div>
+<div>
+    <p id="ajaxResponse"></p>
 </div>
 </body>
 </html>

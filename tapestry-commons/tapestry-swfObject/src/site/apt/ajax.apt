@@ -23,4 +23,119 @@ How to get Flash (or Flex) talking AJAX to Tapestry Pages
 
  Jetty will start and on {{http://localhost:8080/SwfObjectAjaxPage}} you will see the working example.
 
- 
+
+** The Tapestry Page
+
+ On your page class you need to
+ * add the flash movie
+
+ * pass into to it via flashvars the event url
+
+ * create an event handler to handle the event and then return a JSON response
+
++--
+public class SwfObjectAjaxPage {
+
+	@Property
+	private JSONObject flashvars;
+
+	@Inject
+	private ComponentResources componentResources;
+
+	@Environmental
+	private RenderSupport renderSupport;
+
+	public void setupRender() {
+		flashvars = new JSONObject();
+		flashvars.append("ajaxRequestUrl", componentResources.createEventLink("ajaxRequest").toAbsoluteURI() );
+
+	}
+
+	/**
+	 * Called on the AJAX Request
+	 *
+	 * Note we could return the json object directly if we got flash to set the XMLHTTPRequest headers.
+	 * @return
+	 */
+	public Object onAjaxRequest(){
+		JSONObject myResults = new JSONObject();
+		myResults.append("Cat", "Parsnip");
+		return new TextStreamResponse("application/json", myResults.toString());
+	}
+}
+
++--
+
++--
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd">
+<head></head>
+<body>
+<h1>Swf Object Test Page</h1>
+<div t:id="swfObject" t:type="ioko/swfObject" width="300" height="300" swf="asset:FlexAjax.swf"
+     flashvars="flashVars">
+    <p>Non Flash Content</p>
+</div>
+</body>
+
++--
+
+** The Flex (or Flash) movie
+
+ In the movie you need to
+ * Get the url from the flash vars
+
++--
+    private function setupAjax():void{
+				ajaxHelper = new AjaxHelper(Application.application.parameters.ajaxRequestUrl, processResult);
+				ajaxHelper.ExecuteAjax();
+			}
++--
+
+ * Work out the correct absolute URL (I have done this in a 'helper class'). I have used the External Interface you could also use the Browser interface but that requires a lot of Adobe Javascript to be loaded.
+
+ * Make a request to the URL
+
+ * Parse the response via the JSON library from ASCorelib {{http://code.google.com/p/as3corelib/}} . In the example I simply copied all the files required for JSON into my source path. Alternatively you can add a dependency on the library via flash/flex.
+
++--
+public class AjaxHelper
+	{
+		private var url:URLRequest
+		private var dataReciever:Function;
+		public var lastData:Object;
+
+		public function AjaxHelper(passedUrl:String, dataReciever:Function)
+		{
+			// Passed URL is relative to current site so we need to add the domain name etc on the front
+			var pageUrl:String = ExternalInterface.call("window.location.href.toString");
+			var fixedUrl:String = URLUtil.getProtocol(pageUrl) + "://" + URLUtil.getServerNameWithPort(pageUrl) + passedUrl;
+
+			url = new URLRequest(fixedUrl);
+			this.dataReciever = dataReciever;		}
+
+		public function ExecuteAjax():void{
+			var loader:URLLoader = new URLLoader;
+			loader.addEventListener(Event.COMPLETE, function(e:Event):void {
+			   lastData = JSON.decode(loader.data);
+			   dataReciever(lastData);
+		    })
+			loader.load(url);
+		}
+
+	}
++--
+
+ * When this exectues it calls back with the data AND it puts it in a public property called lastData
+
+ * You can then read the JSON data - in my example above - this would return 'Parsnip'
++--
+ public function getLastData():Object{
+				return ajaxHelper.lastData.Cat[0];
+         }
++--
+
+** Other notes
+
+ * If you want to pass context into the event simply add it to the URL
+
+ * You don't have to use JSON you could use XML or roll your own protocol. I choose JSON as it is easy and fast
