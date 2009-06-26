@@ -29,3 +29,23 @@ Coding Standards
 Setting up your IDE
 
  In IntelliJ just open the pom.xml. In eclipse use mvn eclipse:eclipse. We are using Clover so you can install the Clover plugin for your IDE. The open source license key is in the pom.xml. NOTE you cannot use this key except on open source projects.
+
+How to do a release
+
+ * First get everyone who is commiting to agree that release is ready
+
+ * Check test coverage is 100%
+
+ * On HEAD create a tag called vVERSION_NUMBER - e.g. v_1_2_0
+
+ * On HEAD search/replace pom's <version>RELEASE-SNAPSHOT</version> to <version>NEW-SNAPSHOT</version>
+
+ * Check out the tag
+
+ * On the tag search/replace pom's <version>RELEASE-SNAPSHOT</version> to <version>RELEASE</version>
+
+ * Commit to tag
+
+ * Edit the Release build plan on bamboo to use this tag
+
+ * Run the release build on bamboo
