@@ -21,10 +21,42 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/DECORATION/1.0.0 http://maven.apache.org/xsd/decoration-1.0.0.xsd">
 
-<body>
-    <menu name="How To">
-        <item name="AJAX into a Flash movie" href="./ajax.html"></item>
+    <bannerLeft>
+        <name>ioko-tapestry-commons</name>
+        <src>images/tapestry-commons.png</src>
+        <href>http://tapestry.formos.com/projects/ioko-tapestry-commons/</href>
+    </bannerLeft>
+    <bannerRight>
+        <name>ioko</name>
+        <src>images/ioko.png</src>
+        <href>http://www.ioko.com/</href>
+    </bannerRight>
+    <version position="right"/>
 
-    </menu>
-</body>
+    <body>
+
+        <head>
+            <!-- Add google analytics -->
+            <script src="http://www.google-analytics.com/ga.js" type='text/javascript'></script>
+            <script type="text/javascript">
+                try {
+                var pageTracker = _gat._getTracker("UA-75598-9");
+                pageTracker._trackPageview();
+                } catch(err) {}
+            </script>
+        </head>
+        <menu name="Sites">
+            <item name="Release Site" href="http://tapestry.formos.com/projects/ioko-tapestry-commons/"/>
+            <item name="Nightly Site" href="http://tapestry.formos.com/nightly/ioko-tapestry-commons/"/>
+        </menu>
+        <menu name="How To">
+            <item name="AJAX into a Flash movie" href="./ajax.html"></item>
+        </menu>
+
+        <menu ref="modules"/>
+        <menu ref="reports"/>
+        <menu ref="parentProject" inherit="top"/>
+
+    </body>
 </project>
+
