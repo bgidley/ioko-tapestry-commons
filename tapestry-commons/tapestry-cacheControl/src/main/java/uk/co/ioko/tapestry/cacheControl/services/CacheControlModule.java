@@ -20,13 +20,16 @@
 package uk.co.ioko.tapestry.cacheControl.services;
 
 import org.apache.tapestry5.ioc.Configuration;
+import org.apache.tapestry5.ioc.MappedConfiguration;
 import org.apache.tapestry5.ioc.OrderedConfiguration;
 import org.apache.tapestry5.ioc.ServiceBinder;
-import org.apache.tapestry5.ioc.MappedConfiguration;
 import org.apache.tapestry5.ioc.services.Coercion;
 import org.apache.tapestry5.ioc.services.CoercionTuple;
 import org.apache.tapestry5.services.ComponentClassTransformWorker;
+import org.apache.tapestry5.services.ComponentEventRequestFilter;
+import org.apache.tapestry5.services.MarkupRendererFilter;
 import org.apache.tapestry5.services.PageRenderRequestFilter;
+import org.apache.tapestry5.services.PartialMarkupRendererFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import uk.co.ioko.tapestry.cacheControl.annotations.CacheType;
@@ -42,7 +45,8 @@ public class CacheControlModule {
 
 	public static void bind(ServiceBinder binder) {
 		binder.bind(CacheControlFilter.class);
-
+		binder.bind(CacheControlMarkupRenderer.class);
+		binder.bind(CacheControlSupport.class, CacheControlSupportImpl.class);
 	}
 
 	public void contributePageRenderRequestHandler(OrderedConfiguration<PageRenderRequestFilter> configuration,
@@ -57,6 +61,13 @@ public class CacheControlModule {
 
 	}
 
+	public static void contributeComponentEventRequestHandler(
+			OrderedConfiguration<ComponentEventRequestFilter> configuration,
+			final CacheControlFilter cacheControlFilter) {
+
+		configuration.add("AjaxCacheControlFilter", cacheControlFilter, "before:ajax");
+	}
+
 	public static void contributeFactoryDefaults(MappedConfiguration<String, String> configuration) {
 		// Set the default caching to none
 		configuration.add(CacheControlTransformer.CACHE_TYPE_METADATA, CacheType.NEVER.name());
@@ -68,6 +79,30 @@ public class CacheControlModule {
 		configuration.add("cacheControl.long", String.valueOf(86400));
 		// 10 years
 		configuration.add("cacheControl.farFuture", String.valueOf(315360000));
+
+		// Disable event caching by default as it may cause issues with private data sharing if not properly configured
+		configuration.add("cacheControl.enableEventHeaders", String.valueOf(false));
+
+	}
+
+	/**
+	 * We contribute this to add a script to all pages that will overide how tapestry requests AJAX. It converts requests
+	 * to a GET as opposed to a POST.
+	 * <p/>
+	 * This could cause bad things to happen if we didn't also set accurate cache control headers for all events.
+	 *
+	 * @param configuration
+	 */
+	public void contributeMarkupRenderer(OrderedConfiguration<MarkupRendererFilter> configuration,
+										 CacheControlMarkupRenderer cacheControlMarkupRenderer) {
+
+		configuration.add("CacheControl", cacheControlMarkupRenderer, "after:RenderSupport");
+	}
+
+	public void contributePartialMarkupRenderer(OrderedConfiguration<PartialMarkupRendererFilter> configuration,
+												CacheControlMarkupRenderer cacheControlMarkupRenderer) {
+
+		configuration.add("CacheControlPartial", cacheControlMarkupRenderer, "after:RenderSupport");
 
 	}
 

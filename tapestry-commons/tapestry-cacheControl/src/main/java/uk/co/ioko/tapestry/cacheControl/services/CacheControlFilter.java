@@ -19,48 +19,36 @@
 
 package uk.co.ioko.tapestry.cacheControl.services;
 
-import org.apache.commons.lang.time.FastDateFormat;
-import org.apache.tapestry5.ioc.annotations.Symbol;
+import org.apache.tapestry5.services.ComponentEventRequestFilter;
+import org.apache.tapestry5.services.ComponentEventRequestHandler;
+import org.apache.tapestry5.services.ComponentEventRequestParameters;
 import org.apache.tapestry5.services.MetaDataLocator;
 import org.apache.tapestry5.services.PageRenderRequestFilter;
 import org.apache.tapestry5.services.PageRenderRequestHandler;
 import org.apache.tapestry5.services.PageRenderRequestParameters;
-import org.apache.tapestry5.services.Response;
+import org.apache.tapestry5.services.Request;
 import uk.co.ioko.tapestry.cacheControl.annotations.CacheType;
 
 import java.io.IOException;
-import java.util.Locale;
-import java.util.Calendar;
 
 /**
  * Page render request filter to write headers for annotated pages
  */
-public class CacheControlFilter implements PageRenderRequestFilter {
+public class CacheControlFilter implements PageRenderRequestFilter, ComponentEventRequestFilter {
 
-	private static final FastDateFormat DATE_FORMAT = FastDateFormat.getInstance("EEE, dd MMM yyyy HH:mm:ss z",
-			Locale.UK);
 	private MetaDataLocator metaDataLocator;
-	private int mediumCacheTime;
-	private int shortCacheTime;
-	private int longCacheTime;
-	private Response response;
-	private static final String CACHE_CONTROL_HEADER = "Cache-Control";
-	private static final String PRAGMA_HEADER = "Pragma";
-	private int farFutureCacheTime;
+	private Request request;
+	private CacheControlSupport cacheControlSupport;
+
 
 	/**
 	 *
 	 */
-	public CacheControlFilter(final MetaDataLocator metaDataLocator, @Symbol("cacheControl.short") int shortCacheTime,
-							  @Symbol("cacheControl.medium") int mediumCacheTime,
-							  @Symbol("cacheControl.long") int longCacheTime,
-							  @Symbol("cacheControl.farFuture") int farFutureCacheTime, Response response) {
+	public CacheControlFilter(final MetaDataLocator metaDataLocator,
+							  Request request, CacheControlSupport cacheControlSupport) {
 		this.metaDataLocator = metaDataLocator;
-		this.longCacheTime = longCacheTime;
-		this.shortCacheTime = shortCacheTime;
-		this.mediumCacheTime = mediumCacheTime;
-		this.response = response;
-		this.farFutureCacheTime = farFutureCacheTime;
+		this.request = request;
+		this.cacheControlSupport = cacheControlSupport;
 	}
 
 	/**
@@ -75,56 +63,29 @@ public class CacheControlFilter implements PageRenderRequestFilter {
 		// Get the page metadata without loading the page (note a type coercer is used here)
 		CacheType cacheType = metaDataLocator.findMeta(CacheControlTransformer.CACHE_TYPE_METADATA,
 				parameters.getLogicalPageName(), CacheType.class);
-		if (!(cacheType == CacheType.NONE)) {
-			// We should process headers
-			if (cacheType == CacheType.NEVER) {
-				addNeverHeaders();
-			}  else {
-				addRelativeHeaders(calculate(cacheType));
-			}
-		}
+		cacheControlSupport.setCacheType(cacheType);
+
 
 		// Pass it down the chain
 		handler.handle(parameters);
 	}
 
 	/**
-	 * Returns the cache time for this cache type
+	 * On component events IFF AJAX then also add headers
 	 *
-	 * @param cacheType
-	 * @return The time (in seconds) to cache)
+	 * @param parameters
+	 * @param handler
+	 * @throws IOException
 	 */
+	public void handle(ComponentEventRequestParameters parameters,
+					   ComponentEventRequestHandler handler) throws IOException {
 
-	private int calculate(CacheType cacheType) {
-		if (cacheType == CacheType.LONG) {
-			return longCacheTime;
-		} else if (cacheType == CacheType.MEDIUM) {
-			return mediumCacheTime;
-		} else if (cacheType == CacheType.FAR_FUTURE) {
-			return farFutureCacheTime;
-		} else {
-			return shortCacheTime;
+		if (request.isXHR()) {
+			CacheType cacheType = metaDataLocator.findMeta(CacheControlTransformer.CACHE_TYPE_METADATA,
+					parameters.getContainingPageName(), CacheType.class);
+			cacheControlSupport.setCacheType(cacheType);
 		}
-	}
-
-	/**
-	 * Add never (or no-cache headers) to try and force no caching
-	 */
-	private void addNeverHeaders() {
-		response.setHeader(CACHE_CONTROL_HEADER, "no-cache");
-		response.setHeader(PRAGMA_HEADER, "No-Cache");
-		
-	}
-
-	/**
-	 * Add relative header
-	 *
-	 * @param timeInSeconds
-	 */
-	private void addRelativeHeaders(int timeInSeconds) {
-		response.setHeader(CACHE_CONTROL_HEADER, String.format("max-age=%d", timeInSeconds));
-		Calendar expires = Calendar.getInstance();
-		expires.add(Calendar.SECOND, timeInSeconds);
-		response.setHeader("Expires", DATE_FORMAT.format(expires));
+		// Pass it down the chain NOTE by the time this returns the AJAX response will have gone so we can't work after this.
+		handler.handle(parameters);
 	}
 }

@@ -19,25 +19,13 @@
 
 package uk.co.ioko.tapestry.cacheControl.services;
 
-import org.apache.tapestry5.SymbolConstants;
-import org.apache.tapestry5.ioc.MappedConfiguration;
-import org.apache.tapestry5.ioc.annotations.SubModule;
+import uk.co.ioko.tapestry.cacheControl.annotations.CacheType;
 
 /**
- * Created by IntelliJ IDEA. User: ben Date: Jun 16, 2009 Time: 9:05:00 AM
+ * Created by IntelliJ IDEA. User: ben Date: Jun 29, 2009 Time: 1:45:48 PM
  */
-@SubModule(CacheControlModule.class)
-public class TestModule {
+public interface CacheControlSupport {
+	CacheType getCacheType();
 
-	public static void contributeApplicationDefaults(MappedConfiguration<String, String> configuration) {
-
-		configuration.add(SymbolConstants.APPLICATION_VERSION, "1.0");
-		configuration.add(SymbolConstants.PRODUCTION_MODE, "false");
-		configuration.add("cacheControl.short", String.valueOf(3));
-		configuration.add("cacheControl.medium", String.valueOf(5));
-		configuration.add("cacheControl.long", String.valueOf(7));
-		configuration.add("cacheControl.farFuture", String.valueOf(9));
-		configuration.add("cacheControl.enableEventHeaders", String.valueOf(true));
-	}
-	
+	void setCacheType(CacheType cacheType);
 }

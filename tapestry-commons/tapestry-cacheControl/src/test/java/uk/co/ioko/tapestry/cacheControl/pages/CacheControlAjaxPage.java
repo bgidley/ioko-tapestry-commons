@@ -17,33 +17,47 @@
  *     along with ioko tapestry-commons.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package uk.co.ioko.tapestry.cacheControl.services;
+package uk.co.ioko.tapestry.cacheControl.pages;
 
-import org.apache.tapestry5.model.MutableComponentModel;
-import org.apache.tapestry5.services.ClassTransformation;
-import org.apache.tapestry5.services.ComponentClassTransformWorker;
+import org.apache.tapestry5.Block;
+import org.apache.tapestry5.ioc.annotations.Inject;
 import uk.co.ioko.tapestry.cacheControl.annotations.CacheControl;
 import uk.co.ioko.tapestry.cacheControl.annotations.CacheType;
+import uk.co.ioko.tapestry.cacheControl.services.CacheControlSupport;
+
+import java.util.Date;
 
 /**
- * Created by IntelliJ IDEA. User: ben Date: Jun 15, 2009 Time: 4:04:43 PM
+ * Created by IntelliJ IDEA. User: ben Date: Jun 26, 2009 Time: 4:35:09 PM
  */
-public class CacheControlTransformer implements ComponentClassTransformWorker {
-	public static final String CACHE_TYPE_METADATA = "cacheControl.CacheType";
+@CacheControl(cacheType = CacheType.FAR_FUTURE)
+public class CacheControlAjaxPage {
 
-	/**
-	 * Store the caching information in the component model
-	 *
-	 * @param transformation
-	 * @param model
-	 */
-	public void transform(ClassTransformation transformation, MutableComponentModel model) {
-		CacheControl cacheControl = transformation.getAnnotation(CacheControl.class);
+	@Inject
+	private Block ajaxResponse;
 
-		if (cacheControl != null) {
-			model.setMeta(CACHE_TYPE_METADATA, cacheControl.cacheType().name());
-		} else {
-			model.setMeta(CACHE_TYPE_METADATA, CacheType.NEVER.name());
-		}
+	private Date now;
+
+	@Inject
+	private CacheControlSupport cacheControlSupport;
+
+	public Date getNow() {
+		return now;
 	}
+
+	public void setupRender() {
+		this.now = new Date();
+	}
+
+	public Block onActionFromAjax() {
+		return ajaxResponse;
+	}
+
+	public Block onActionFromNoneAjax() {
+
+		cacheControlSupport.setCacheType(CacheType.NONE);
+		return ajaxResponse;
+	}
+
+
 }
