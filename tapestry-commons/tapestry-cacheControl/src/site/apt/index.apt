@@ -1,7 +1,7 @@
 Cache Control
 
  This module add the ability to control the caching of your tapestry pages by simply annotating the
- class.
+ page class.
 
 +--
   @CacheControl(cacheType = CacheType.NEVER)
@@ -49,6 +49,38 @@ Default Cache Type
 +--
      configuration.add(CacheControlTransformer.CACHE_TYPE_METADATA, CacheType.NONE);
 +--
+
+AJAX Event Caching
+
+ It is possible to set and use cache control headers on AJAX events. This can be very handy as they can cause substantial
+ load. However this also comes with a health warning - you need to think
+ carefully before enabling this as if you do it wrong you could share data between users!
+
+ You need to enable this by add the following application default
+
++--
+	configuration.add("cacheControl.enableEventHeaders", String.valueOf(true));
++--
+
+ This will enable setting cache control headers for AJAX events. This will change all tapestry AJAX events to use a GET
+ instead of a post.
+
+ The headers set will be
+
+ * By Default the system wide default (which is no headers unless you change it)
+
+ * If the page has an annotation is will set those
+
+ * If the event needs to overide the page annotation you can inject CacheControlSupport and set the desired header
+
++--
+    public Block onActionFromNoneAjax() {
+
+		cacheControlSupport.setCacheType(CacheType.NONE);
+		return ajaxResponse;
+	}
++--
+
 
 Implementation Notes
 
