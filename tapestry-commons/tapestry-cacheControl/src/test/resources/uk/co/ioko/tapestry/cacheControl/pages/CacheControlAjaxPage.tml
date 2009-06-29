@@ -32,8 +32,10 @@
 <t:actionlink t:id="noneAjax" zone="noneAjaxResponseArea">Run some ajax that isn't cached</t:actionlink>
 
 <t:block t:id="ajaxResponse">
-    <p>Hello from ajax</p>
-    <p>${now}</p>
+    <dl>
+    <dt>Hello from ajax</dt>
+    <dd>${now}</dd>
+    </dl>
 </t:block>
 </body>
 </html>

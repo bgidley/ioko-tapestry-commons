@@ -36,17 +36,11 @@ public class CacheControlAjaxPage {
 	@Inject
 	private Block ajaxResponse;
 
-	private Date now;
-
 	@Inject
 	private CacheControlSupport cacheControlSupport;
 
 	public Date getNow() {
-		return now;
-	}
-
-	public void setupRender() {
-		this.now = new Date();
+		return new Date();
 	}
 
 	public Block onActionFromAjax() {

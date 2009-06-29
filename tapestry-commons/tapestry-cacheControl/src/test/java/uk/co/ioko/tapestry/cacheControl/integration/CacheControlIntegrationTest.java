@@ -81,9 +81,11 @@ public class CacheControlIntegrationTest extends AbstractIntegrationTestSuite {
 		open(BASE_URL + "CacheControlMediumTestPage");
 		String finalDate = getText("//dl[@id='mediumlive']/dt[2]");
 
-		Assert.assertTrue(initialDate.equals(interimDate), "Initial date "+initialDate+" should be cached and so match interim date "+interimDate+".");
-		Assert.assertTrue(! initialDate.equals(finalDate), "Initial date "+initialDate+" should have expired and should not match final date "+finalDate+".");
-		
+		Assert.assertTrue(initialDate.equals(interimDate),
+				"Initial date " + initialDate + " should be cached and so match interim date " + interimDate + ".");
+		Assert.assertTrue(!initialDate.equals(finalDate),
+				"Initial date " + initialDate + " should have expired and should not match final date " + finalDate + ".");
+
 	}
 
 	@Test
@@ -106,9 +108,11 @@ public class CacheControlIntegrationTest extends AbstractIntegrationTestSuite {
 		open(BASE_URL + "CacheControlLongTestPage");
 		String finalDate = getText("//dl[@id='longlive']/dt[2]");
 
-		Assert.assertTrue(initialDate.equals(interimDate), "Initial date "+initialDate+" should be cached and so match interim date "+interimDate+".");
-		Assert.assertTrue(! initialDate.equals(finalDate), "Initial date "+initialDate+" should have expired and should not match final date "+finalDate+".");
-		
+		Assert.assertTrue(initialDate.equals(interimDate),
+				"Initial date " + initialDate + " should be cached and so match interim date " + interimDate + ".");
+		Assert.assertTrue(!initialDate.equals(finalDate),
+				"Initial date " + initialDate + " should have expired and should not match final date " + finalDate + ".");
+
 	}
 
 	@Test
@@ -131,11 +135,13 @@ public class CacheControlIntegrationTest extends AbstractIntegrationTestSuite {
 		open(BASE_URL + "CacheControlFarFutureTestPage");
 		String finalDate = getText("//dl[@id='farfuturelive']/dt[2]");
 
-		Assert.assertTrue(initialDate.equals(interimDate), "Initial date "+initialDate+" should be cached and so match interim date "+interimDate+".");
-		Assert.assertTrue(! initialDate.equals(finalDate), "Initial date "+initialDate+" should have expired and should not match final date "+finalDate+".");
-		
+		Assert.assertTrue(initialDate.equals(interimDate),
+				"Initial date " + initialDate + " should be cached and so match interim date " + interimDate + ".");
+		Assert.assertTrue(!initialDate.equals(finalDate),
+				"Initial date " + initialDate + " should have expired and should not match final date " + finalDate + ".");
+
 	}
-	
+
 	@Test
 	public void testNoneCachedPage() throws Exception {
 		open(BASE_URL + "CacheControlNoneTestPage");
@@ -148,14 +154,13 @@ public class CacheControlIntegrationTest extends AbstractIntegrationTestSuite {
 
 		// Refresh the page it shouldn't have changed
 		open(BASE_URL + "CacheControlNoneTestPage");
-		
+
 		String newDate = getText("//dl[@id='nonelive']/dt[2]");
-		assertTrue(! date.equals(newDate));
+		assertTrue(!date.equals(newDate));
 
 
 	}
 
-	
 
 	@Test
 	public void testNeverCachedPage() throws Exception {
@@ -169,10 +174,46 @@ public class CacheControlIntegrationTest extends AbstractIntegrationTestSuite {
 
 		// Refresh the page it shouldn't have changed
 		open(BASE_URL + "CacheControlNeverTestPage");
-		
-		String newDate = getText("//dl[@id='neverlive']/dt[2]");
-		assertTrue(! date.equals(newDate));
 
+		String newDate = getText("//dl[@id='neverlive']/dt[2]");
+		assertTrue(!date.equals(newDate));
+
+
+	}
+
+	@Test
+	public void testAjaxCachedPage() throws Exception {
+		open(BASE_URL + "CacheControlAjaxPage");
+
+		String pageDate = getText("//p[2]");
+
+		click("ajax");
+
+		String pageDate2 = getText("//p[2]");
+		assertEquals(pageDate, pageDate2);
+
+		Thread.sleep(1000);
+
+		String ajaxDate = getText("//div[@id='ajaxResponseArea']/dl/dd");
+
+		click("ajax");
+
+		Thread.sleep(1000);
+		String ajaxDate2 = getText("//div[@id='ajaxResponseArea']/dl/dd");
+
+		assertEquals(ajaxDate, ajaxDate2);
+
+		click("noneAjax");
+		Thread.sleep(1000);
+
+		String noneajaxDate = getText("//div[@id='noneAjaxResponseArea']/dl/dd");
+
+
+		click("noneAjax");
+		Thread.sleep(1000);
+		String noneajaxDate2 = getText("//div[@id='noneAjaxResponseArea']/dl/dd");
+
+		assertTrue(!noneajaxDate.equals(noneajaxDate2));
 
 	}
 
