@@ -23,6 +23,7 @@
 <h1>Ajax Test Page</h1>
 
 <p>This is rendered with the page</p>
+
 <p>${now}</p>
 
 <t:zone t:id="ajaxResponseArea"/>
@@ -31,10 +32,20 @@
 <t:zone t:id="noneAjaxResponseArea"/>
 <t:actionlink t:id="noneAjax" zone="noneAjaxResponseArea">Run some ajax that isn't cached</t:actionlink>
 
+<div>
+    <t:actionlink id="notAjax" t:id="notAjax">Run fetch a response not via ajax</t:actionlink>
+</div>
+<div id="notAjaxResponseArea">
+    <t:if test="showNotAjax">
+        <t:delegate to="ajaxResponse"/>
+    </t:if>
+</div>
+
+
 <t:block t:id="ajaxResponse">
     <dl>
-    <dt>Hello from ajax</dt>
-    <dd>${now}</dd>
+        <dt>Hello from ajax</dt>
+        <dd>${now}</dd>
     </dl>
 </t:block>
 </body>

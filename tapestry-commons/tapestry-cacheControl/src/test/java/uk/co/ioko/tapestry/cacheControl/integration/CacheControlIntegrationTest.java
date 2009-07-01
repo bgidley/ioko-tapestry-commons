@@ -187,10 +187,12 @@ public class CacheControlIntegrationTest extends AbstractIntegrationTestSuite {
 
 		String pageDate = getText("//p[2]");
 
+
 		click("ajax");
 
 		String pageDate2 = getText("//p[2]");
 		assertEquals(pageDate, pageDate2);
+
 
 		Thread.sleep(1000);
 
@@ -214,6 +216,11 @@ public class CacheControlIntegrationTest extends AbstractIntegrationTestSuite {
 		String noneajaxDate2 = getText("//div[@id='noneAjaxResponseArea']/dl/dd");
 
 		assertTrue(!noneajaxDate.equals(noneajaxDate2));
+
+		clickAndWait("notAjax");
+		// Page should refresh and the not ajax div should be present
+		String notAjaxResponseDate = getText("//div[@id='notAjaxResponseArea']/dl/dd");
+		assertTrue(notAjaxResponseDate.length()>0);
 
 	}
 

@@ -20,6 +20,8 @@
 package uk.co.ioko.tapestry.cacheControl.pages;
 
 import org.apache.tapestry5.Block;
+import org.apache.tapestry5.annotations.Persist;
+import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import uk.co.ioko.tapestry.cacheControl.annotations.CacheControl;
 import uk.co.ioko.tapestry.cacheControl.annotations.CacheType;
@@ -34,10 +36,22 @@ import java.util.Date;
 public class CacheControlAjaxPage {
 
 	@Inject
+	@Property
 	private Block ajaxResponse;
+
 
 	@Inject
 	private CacheControlSupport cacheControlSupport;
+
+	@Property
+	@Persist(org.apache.tapestry5.PersistenceConstants.FLASH)
+	private Boolean showNotAjax;
+
+	public void setupRender(){
+		if (showNotAjax == null){
+			showNotAjax = false;
+		}
+	}
 
 	public Date getNow() {
 		return new Date();
@@ -51,6 +65,10 @@ public class CacheControlAjaxPage {
 
 		cacheControlSupport.setCacheType(CacheType.NONE);
 		return ajaxResponse;
+	}
+
+	public void onActionFromNotAjax() {
+		showNotAjax = true;
 	}
 
 
