@@ -67,6 +67,12 @@ public class CacheControlAjaxPage {
 		return ajaxResponse;
 	}
 
+	public Block onActionFromNeverAjax() {
+
+		cacheControlSupport.setCacheType(CacheType.NEVER);
+		return ajaxResponse;
+	}
+
 	public void onActionFromNotAjax() {
 		showNotAjax = true;
 	}

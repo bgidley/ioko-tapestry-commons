@@ -217,6 +217,19 @@ public class CacheControlIntegrationTest extends AbstractIntegrationTestSuite {
 
 		assertTrue(!noneajaxDate.equals(noneajaxDate2));
 
+		click("neverAjax");
+		Thread.sleep(1000);
+
+		String neverajaxDate = getText("//div[@id='neverAjaxResponseArea']/dl/dd");
+
+
+		click("neverAjax");
+		Thread.sleep(1000);
+		String neverajaxDate2 = getText("//div[@id='neverAjaxResponseArea']/dl/dd");
+
+		assertTrue(!neverajaxDate.equals(neverajaxDate2));
+
+
 		clickAndWait("notAjax");
 		// Page should refresh and the not ajax div should be present
 		String notAjaxResponseDate = getText("//div[@id='notAjaxResponseArea']/dl/dd");

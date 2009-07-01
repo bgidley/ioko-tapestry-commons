@@ -30,7 +30,11 @@
 <t:actionlink t:id="ajax" zone="ajaxResponseArea">Run some ajax</t:actionlink>
 
 <t:zone t:id="noneAjaxResponseArea"/>
-<t:actionlink t:id="noneAjax" zone="noneAjaxResponseArea">Run some ajax that isn't cached</t:actionlink>
+<t:actionlink t:id="noneAjax" zone="noneAjaxResponseArea">Run some ajax that isn't cached (using NONE)</t:actionlink>
+
+<t:zone t:id="neverAjaxResponseArea"/>
+<t:actionlink t:id="neverAjax" zone="neverAjaxResponseArea">Run some ajax that isn't cached (using NEVER)</t:actionlink>
+
 
 <div>
     <t:actionlink id="notAjax" t:id="notAjax">Run fetch a response not via ajax</t:actionlink>
