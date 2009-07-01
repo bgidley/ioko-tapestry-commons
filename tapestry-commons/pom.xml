@@ -61,7 +61,7 @@
     </contributors>
 
     <scm>
-        <connection>scm:svn:https://tapestry.formos.com/svn/ioko-tapestry-commons</connection>
+        <connection>scm:svn:https://tapestry.formos.com/svn/ioko-tapestry-commons/</connection>
         <url>http://tapestry.formos.com/cgi-bin/viewvc.cgi/ioko-tapestry-commons/</url>
     </scm>
 

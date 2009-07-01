@@ -84,6 +84,8 @@ AJAX Event Caching
 
 Implementation Notes
 
+* Headers
+
  The library seeks to use headers that will work with many proxy servers/browsers so it sets
 
  * Expires
@@ -91,3 +93,20 @@ Implementation Notes
  * Cache Control
  
  * Pragma='no-cache'
+
+* Ajax Event
+
+ The ajax event implementation overides the ajaxRequest function is tapestry.js to change the default method to GET (as
+ opposed to POST). This is a global setting so once enabled will impact ALL ajax requests.
+
+ This is done as part of page
+ initialisation - it is not therefore guarenteed if you called Tapestry.ajaxRequest in an included JS file it will run
+ after (or before) this overide occurs. In reality this is unlikely to be an issue as AJAX doesn't generally occur on page
+ load - and if you wanted to do that putting your call in an init function should solve the issue.
+
+ One side effect of changing from POST to GET is all AJAX requests will need cache headers to stop them being cached. Therefore
+ is you enable AJAX caching you should change the default cacheType to be NEVER in your application defaults
+
++--
+      configuration.add(CacheControlTransformer.CACHE_TYPE_METADATA, CacheType.NEVER);
++--
