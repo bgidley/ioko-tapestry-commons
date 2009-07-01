@@ -31,13 +31,13 @@ public class CacheControlIntegrationTest extends AbstractIntegrationTestSuite {
 		super("src/test/webapp");
 	}
 
-//	@Test
-//	public void testShortCachedPage() throws Exception {
-//
-//		// Get the contents of the date time field
-//		open(BASE_URL + "CacheControlShortTestPage");
-//		String initialDate = getText("//dl[@id='shortlive']/dt[2]");
-//
+	@Test
+	public void testShortCachedPage() throws Exception {
+
+		// Get the contents of the date time field
+		open(BASE_URL + "CacheControlShortTestPage");
+		String initialDate = getText("//dl[@id='shortlive']/dt[2]");
+
 //		// Wait 1 seconds
 //		Thread.sleep(1000);
 //
@@ -56,8 +56,8 @@ public class CacheControlIntegrationTest extends AbstractIntegrationTestSuite {
 //
 //		Assert.assertTrue(initialDate.equals(interimDate), "Initial date "+initialDate+" should be cached and so match interim date "+interimDate+".");
 //		Assert.assertTrue(! initialDate.equals(finalDate), "Initial date "+initialDate+" should have expired and should not match final date "+finalDate+".");
-//
-//	}
+
+	}
 
 	@Test
 	public void testMediumCachedPage() throws Exception {
