@@ -17,7 +17,7 @@
   ~     along with ioko tapestry-commons.  If not, see <http://www.gnu.org/licenses/>.
   -->
 
-<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd">
 <body>
 
 <h1>Ajax Test Page</h1>

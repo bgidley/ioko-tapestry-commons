@@ -19,7 +19,7 @@
 <html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 
 <head>
-
+                            3
 
 </head>
 
@@ -50,7 +50,6 @@
     <dt>Counter</dt>
     <dd>${count}</dd>
 </dl>
-
 
 <div>
     <a id="increment" href="#" t:type="eventLink" event="increment">Increment</a>
