@@ -3,9 +3,9 @@ Stacks
  One of the common requests is how to use libraries such as JQuery in tapestry applications. There are two options for doing
  this
 
- # Include it on each page/component using an @IncludeJavascript annonation (or using renderSupport.addScriptLink() )
+ * Include it on each page/component using an @IncludeJavascript annonation (or using renderSupport.addScriptLink() )
 
- # Include them globally in a 'stack'
+ * Include them globally in a 'stack'
 
  IncludeJavascript is quick and easy but can have disadvantages when you have common libraries loaded on a lot of pages. If
  you have multiple projects using the same library then you can get it included twice.
