@@ -29,7 +29,7 @@
     <groupId>uk.co.ioko</groupId>
     <artifactId>tapestry-javascript</artifactId>
     <version>1.3.0-SNAPSHOT</version>
-    <name>tapestry jquery</name>
+    <name>Tapestry Javascript</name>
 
 
     <dependencies>
