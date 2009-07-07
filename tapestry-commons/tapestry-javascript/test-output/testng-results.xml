@@ -1,0 +1,14 @@
+<testng-results>
+  <reporter-output>
+  </reporter-output>
+  <suite name="Custom suite">
+    <groups>
+    </groups>
+    <test name="tapestry-commons">
+      <class name="uk.co.ioko.tapestry.javascript.pages.IncludeScriptPageTest">
+        <test-method status="PASS" signature="testIncludeScripts()" name="testIncludeScripts" duration-ms="3443" started-at="2009-07-07T14:50:46Z" finished-at="2009-07-07T14:50:50Z">
+        </test-method>
+      </class>
+    </test>
+  </suite>
+</testng-results>

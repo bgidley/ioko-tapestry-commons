@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="tapestry-commons" failures="0" tests="1" time="3.472" errors="0">
+  <properties/>
+  <testcase name="testIncludeScripts" time="3.443" classname="uk.co.ioko.tapestry.javascript.pages.IncludeScriptPageTest"/>
+</testsuite>

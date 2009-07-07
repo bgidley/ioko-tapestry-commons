@@ -12,6 +12,7 @@
         <module>tapestry-caching</module>
         <module>tapestry-swfObject</module>
         <module>tapestry-cacheControl</module>
+        <module>tapestry-javascript</module>
     </modules>
 
     <ciManagement>

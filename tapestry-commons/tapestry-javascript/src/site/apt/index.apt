@@ -1,0 +1,61 @@
+Stacks
+
+ One of the common requests is how to use libraries such as JQuery in tapestry applications. There are two options for doing
+ this
+
+ # Include it on each page/component using an @IncludeJavascript annonation (or using renderSupport.addScriptLink() )
+
+ # Include them globally in a 'stack'
+
+ IncludeJavascript is quick and easy but can have disadvantages when you have common libraries loaded on a lot of pages. If
+ you have multiple projects using the same library then you can get it included twice.
+
+ This library seeks to solve this by allowing you to contribute your required libraries to it and then it will add them
+ into the 'stack' whenever javascript is used.
+
+ This code will de-duplicate libraries based on the filename (path/directories are ignored).
+
+Usage
+
+ Simply add a dependency on this to your project.
+
+ In your module you should contribute any libraries you require
+
++==
+
+public static void contributeJavascriptStack(
+                    @Path("classpath:/uk/co/ioko/tapestry/javascript/jquery-1.3.2.js") Asset jquery,
+                    Configuration<Asset> stack){
+		stack.add(jquery);
+
+	}
+
++==
+
+ If a second library were to add the same version of Jquery this library would detect that conflict and only supply one. If it
+ were to supply a different version then it would include both (as it can't tell they are the same).
+
+Production Mode
+
+ A handy tip is to use the production mode system to include a debug version of third party libraries e.g.
+
++==
+
+public static void contributeJavascriptStack(
+                    @Path("classpath:/uk/co/ioko/tapestry/javascript/jquery-1.3.2.js") Asset jqueryDev,
+                    @Path("classpath:/uk/co/ioko/tapestry/javascript/jquery-1.3.2.min.js") Asset jquery,
+                    @Symbol("tapestry.production-mode") Boolean productionMode,
+                    Configuration<Asset> stack){
+		if (productionMode){
+		    stack.add(jquery);
+		} else {
+		    stack.add(jqueryDev);
+		}
+	}
++==
+
+
+JQuery Specific Note
+
+ If you do include JQuery you will almost certainly want to turn on it's no conflict mode - {{http://docs.jquery.com/Using_jQuery_with_Other_Libraries}}.
+ The easiest way to do this to include another JS after it that calls 'jQuery.noConflict();'
