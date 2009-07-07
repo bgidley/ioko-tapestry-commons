@@ -21,7 +21,7 @@ Usage
 
  In your module you should contribute any libraries you require
 
-+==
++--
 
 public static void contributeJavascriptStack(
                     @Path("classpath:/uk/co/ioko/tapestry/javascript/jquery-1.3.2.js") Asset jquery,
@@ -30,7 +30,7 @@ public static void contributeJavascriptStack(
 
 	}
 
-+==
++--
 
  If a second library were to add the same version of Jquery this library would detect that conflict and only supply one. If it
  were to supply a different version then it would include both (as it can't tell they are the same).
@@ -39,7 +39,7 @@ Production Mode
 
  A handy tip is to use the production mode system to include a debug version of third party libraries e.g.
 
-+==
++--
 
 public static void contributeJavascriptStack(
                     @Path("classpath:/uk/co/ioko/tapestry/javascript/jquery-1.3.2.js") Asset jqueryDev,
@@ -52,7 +52,7 @@ public static void contributeJavascriptStack(
 		    stack.add(jqueryDev);
 		}
 	}
-+==
++--
 
 
 JQuery Specific Note
