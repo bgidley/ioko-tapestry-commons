@@ -358,6 +358,17 @@ oummmmmUUWW9WflhljqXmbpqovjZljjlkpUUnm]]></license>
                             <contextFilters>catch,finally</contextFilters>
                         </configuration>
                     </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-changes-plugin</artifactId>
+                        <reportSets>
+                            <reportSet>
+                                <reports>
+                                    <report>changes-report</report>
+                                </reports>
+                            </reportSet>
+                        </reportSets>
+                    </plugin>
                 </plugins>
             </reporting>
         </profile>

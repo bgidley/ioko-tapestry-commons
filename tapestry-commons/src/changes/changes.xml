@@ -1,0 +1,34 @@
+<document xmlns="http://maven.apache.org/changes/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/changes/1.0.0 http://maven.apache.org/plugins/maven-changes-plugin/xsd/changes-1.0.0.xsd">
+    <properties>
+        <title>ioko Tapestry Commons</title>
+        <author email="ben@gidley.co.uk">Ben Gidley</author>
+    </properties>
+    <body>
+
+        <release version="1.3" date="2009-07-10" description="Version 1.3">
+            <action dev="Ben Gidley" type="add" issue="IOKOCOMMONS-6">
+                Added tapestry-javascript project to provide easy addition of javascript frameworks
+            </action>
+
+        </release>
+
+        <release version="1.2" date="2009-06-25" description="Subsequent release">
+            <action dev="Ben Gidley" type="fix">
+                Fixed bug in cache handling when render support is used
+            </action>
+            <action dev="Ben Gidley" type="update">
+                Increased test coverage to 100% and added clover to monitor.
+            </action>
+            <action dev="Ben Gidley" type="update">
+                Documented how to use SwfObject with JSON events in tapestry pages
+            </action>
+        </release>
+
+        <release version="1.1" date="2009-06-22" description="First release">
+            <action dev="Ben Gidley" type="add">
+                Initial release
+            </action>
+        </release>
+    </body>
+</document>
