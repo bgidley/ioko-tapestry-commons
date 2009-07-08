@@ -7,6 +7,7 @@ Stacks
 
  * Include them globally in a 'stack'
 
+
  IncludeJavascript is quick and easy but can have disadvantages when you have common libraries loaded on a lot of pages. If
  you have multiple projects using the same library then you can get it included twice.
 
