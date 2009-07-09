@@ -74,7 +74,7 @@
                 <configuration>
                     <archive>
                         <manifestEntries>
-                            <Tapestry-Module-Classes>uk.co.ioko.tapestry.cacheControl.services.CacheControlModule</Tapestry-Module-Classes>
+                            <Tapestry-Module-Classes>uk.co.ioko.tapestry.cacheControl.uk.co.ioko.tapestry.jquery.services.CacheControlModule</Tapestry-Module-Classes>
                         </manifestEntries>
                     </archive>
                 </configuration>

@@ -1,0 +1,36 @@
+<!--
+  ~ Copyright (c) 2009 ioko365 Ltd
+  ~
+  ~ This file is part of ioko tapestry-commons.
+  ~
+  ~     ioko tapestry-commons is free software: you can redistribute it and/or modify
+  ~     it under the terms of the GNU General Public License as published by
+  ~     the Free Software Foundation, either version 3 of the License, or
+  ~     (at your option) any later version.
+  ~
+  ~     ioko tapestry-commons is distributed in the hope that it will be useful,
+  ~     but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~     GNU General Public License for more details.
+  ~
+  ~     You should have received a copy of the GNU General Public License
+  ~     along with ioko tapestry-commons.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd">
+<body>
+<h1>Welcome to the jquery test javascript page</h1>
+
+
+<script type="text/javascript">
+    // Use jQuery via jQuery(...)
+     jQuery(document).ready(function(){
+       jQuery("#hideme").hide();
+     });
+</script>
+
+<div id="hideme">
+    <p>I should be hidden on dom ready</p>
+</div>
+</body>
+</html>
