@@ -26,7 +26,6 @@ import org.apache.tapestry5.ioc.MethodAdviceReceiver;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 /**

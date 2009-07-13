@@ -1,0 +1,20 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
+<head>
+    <title>Tapestry5 Commons Library Test Site</title>
+</head>
+<body>
+<h1>BoundCheckbox Mixin</h1>
+
+<t:form t:id="checkBoxForm">
+    <t:grid source="dummyItems" row="current" add="select">
+        <p:selectheader>
+            <t:checkbox t:id="selectAllCheckbox" value="selectAll" t:mixins="ioko/boundcheckbox"/>
+        </p:selectheader>
+        <p:selectcell>
+            <t:checkbox value="currentSelected" t:mixins="ioko/boundcheckbox" master="selectAllCheckbox"/>
+        </p:selectcell>
+    </t:grid>
+    <t:submit/>
+</t:form>
+</body>
+</html>

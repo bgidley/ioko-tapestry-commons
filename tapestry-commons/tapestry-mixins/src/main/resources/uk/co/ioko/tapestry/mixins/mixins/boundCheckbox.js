@@ -15,10 +15,10 @@ ioko.BoundCheckboxMaster = Class.create({
     
     onClick : function(event)
     {
-        for each ( var child in this.childArray ) {
+        for ( var child in this.childArray ) {
         	// TODO: we seem to register everything twice 
         	// but the second set are not valid (child.element is null)
-        	child.element.checked=this.element.checked;
+        	this.childArray[child].element.checked=this.element.checked;
         }
         return false;
     }

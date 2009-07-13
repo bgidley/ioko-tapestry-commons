@@ -32,8 +32,7 @@
                 <configuration>
                     <archive>
                         <manifestEntries>
-                            <Tapestry-Module-Classes>
-                                uk.co.ioko.tapestry.javascript.uk.co.ioko.tapestry.jquery.services.JqueryModule
+                            <Tapestry-Module-Classes>uk.co.ioko.tapestry.jquery.services.JqueryModule
                             </Tapestry-Module-Classes>
                         </manifestEntries>
                     </archive>
