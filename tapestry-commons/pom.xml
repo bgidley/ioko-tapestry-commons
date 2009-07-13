@@ -245,7 +245,7 @@ oummmmmUUWW9WflhljqXmbpqovjZljjlkpUUnm]]></license>
         <repository>
             <id>OpenQA_Release</id>
             <name>OpenQA Release Repository</name>
-            <url>http://nexus.openqa.org/content/repositories/releases/</url>
+            <url>http://nexus.openqa.org/content/repositories/releases</url>
         </repository>
     </repositories>
 

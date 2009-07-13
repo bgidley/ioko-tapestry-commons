@@ -29,7 +29,7 @@
     <groupId>uk.co.ioko</groupId>
     <artifactId>tapestry-mixins</artifactId>
     <version>1.3.0-SNAPSHOT</version>
-    <name>Tapestry Mixins Project</name>
+    <name>Tapestry Mixins</name>
 
 
     <dependencies>
