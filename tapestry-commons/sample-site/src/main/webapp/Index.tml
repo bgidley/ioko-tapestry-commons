@@ -1,0 +1,38 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
+	<head>
+		<title>Tapestry5 Commons Library Test Site</title>
+	</head>
+	<body>
+		<h1>Overlay Mixin</h1>
+		
+		<h2>Overlay on ActionLink</h2>
+		<t:actionlink t:id="testLink" t:mixins="ioko/overlay" overlay.zone="testZone" zone="testZone">Click me</t:actionlink>
+		
+		<h2>Overlay on Form</h2>
+		<t:form t:id="testForm" t:mixins="ioko/overlay" overlay.zone="testFormZone" zone="testFormZone">
+			<t:textfield value="textValue"/>
+			<t:submit/>
+		</t:form>
+		
+		<h1>BoundCheckbox Mixin</h1>
+		
+		<t:form t:id="checkBoxForm">
+			<t:grid source="dummyItems" row="current" add="select" reorder="select, protocol" exclude="file, host, defaultport, authority, port, query, ref, userinfo">
+				<p:selectheader>
+					<t:checkbox t:id="selectAllCheckbox" value="selectAll" t:mixins="ioko/boundcheckbox"/>
+				</p:selectheader>
+				<p:selectcell>
+					<t:checkbox value="currentSelected" t:mixins="ioko/boundcheckbox" master="selectAllCheckbox"/>
+				</p:selectcell>
+			</t:grid>
+			<t:submit/>
+		</t:form>
+		
+		<h1>DisableSorting Mixin</h1>
+		<t:grid source="dummyItems" t:mixins="ioko/disablesorting" reorder="protocol" exclude="file, host, defaultport, authority, port, query, ref, userinfo"/>
+	</body>
+	
+	<t:block t:id="contentBlock">
+		This is the overlay text. The value is ${textValue}.
+	</t:block>
+</html>

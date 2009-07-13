@@ -36,7 +36,7 @@ public class JavascriptStack {
 
 	private List<Asset> libraries;
 
-	public JavascriptStack(final Collection<Asset> libraries) {
+	public JavascriptStack(final List<Asset> libraries) {
 
 		List<String> filenames = new ArrayList<String>();
 		this.libraries = new ArrayList<Asset>();

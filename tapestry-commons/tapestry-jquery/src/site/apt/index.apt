@@ -1,0 +1,11 @@
+JQuery
+
+ This module builds on the tapestry-javascript stack support and automatically includes jQuery
+ in your pages. It automatically calls jQuery.noConflict() so be aware that you will need to 
+ write any jQuery code using the 'jQuery' or map it to another short hand form to avoid conflicts
+ with Scriptaculous.
+
+Usage
+
+ Simply add a dependency on this to your project.
+

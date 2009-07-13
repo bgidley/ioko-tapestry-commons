@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2009 ioko365 Ltd
+  ~
+  ~ This file is part of ioko tapestry-commons.
+  ~
+  ~     ioko tapestry-commons is free software: you can redistribute it and/or modify
+  ~     it under the terms of the GNU General Public License as published by
+  ~     the Free Software Foundation, either version 3 of the License, or
+  ~     (at your option) any later version.
+  ~
+  ~     ioko tapestry-commons is distributed in the hope that it will be useful,
+  ~     but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~     GNU General Public License for more details.
+  ~
+  ~     You should have received a copy of the GNU General Public License
+  ~     along with ioko tapestry-commons.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>ioko-tapestry-commons</artifactId>
+        <groupId>uk.co.ioko</groupId>
+        <version>1.3.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>uk.co.ioko</groupId>
+    <artifactId>tapestry-mixins</artifactId>
+    <version>1.3.0-SNAPSHOT</version>
+    <name>Tapestry Mixins Project</name>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.tapestry</groupId>
+            <artifactId>tapestry-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tapestry</groupId>
+            <artifactId>tapestry-test</artifactId>
+        </dependency>
+        <dependency>
+        	<groupId>uk.co.ioko</groupId>
+        	<artifactId>tapestry-jquery</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifestEntries>
+                            <Tapestry-Module-Classes>uk.co.ioko.tapestry.mixins.services.MixinsModule</Tapestry-Module-Classes>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.mortbay.jetty</groupId>
+                <artifactId>maven-jetty-plugin</artifactId>
+                <version>${jetty-release-version}</version>
+                <configuration>
+                    <!-- Log to the console. -->
+                    <requestLog implementation="org.mortbay.jetty.NCSARequestLog">
+                        <!-- This doesn't do anything for Jetty, but is a workaround for a Maven bug
+                             that prevents the requestLog from being set. -->
+                        <append>true</append>
+                    </requestLog>
+                    <useTestClasspath>true</useTestClasspath>
+                    <contextPath>/</contextPath>
+                    <webAppSourceDirectory>src/test/webapp</webAppSourceDirectory>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

@@ -1,0 +1,67 @@
+Tapestry Mixins
+
+ This module provides a number of useful mixins for use in developing Tapestry applications. We
+ expect this module to grow over time as new mixins are added.
+
+ The sample-site project provides examples of these mixins in use.
+
+Overlay
+
+ This mixin uses jQuery to render a popup div with shaded background. You can see an example
+ on the web at http://flowplayer.org/tools/overlay.html.
+ 
+ The mixin can be applied to both a form element and should work with most kind of clickable
+ link (but is intended mainly for use with actionlink).
+ 
+ The mixin creates a zone using the name you specify and directs the results of the form
+ submit or actionlink into the zone div (within the overlay popup). So your page class
+ needs to return a block to render into the zone, just like with the use of zone on a
+ regular form or actionlink.
+ 
+ At this time the mixin cannot access the zone parameter of the form or actionlink, so
+ you need to specify it twice, like so:
+ 
+ There is room for improvement in this mixin, eg. by allowing more control of the overlay
+ size and not requiring an XHR call for the body of the overlay (could fairly easily delegate
+ to a named block).
+ 
++--
+    <t:actionlink t:mixins="ioko/overlay" zone="myZone" overlay.zone="myZone">...</t:actionlink>
++--
+
+BoundCheckbox
+
+ This mixin can tie together multiple checkboxes in a form so you have a 'master' checkbox which
+ enables or disables all the 'child' checkboxes together. Can be useful in the header row of a
+ grid component if you want to allow quick multi-select of all rows in the grid.
+ 
+ To make it work you need to have a property in your page which is the 'select all' state of
+ the master checkbox, even though you don't really need to access this (since all child checkboxes
+ will be selected on submit).
+ 
+ You then assign your master checkbox to a property of your page and tell each child to use it
+ as its master checkbox. The sample-site has a full example, but here is an outline:
+ 
++--
+  <t:grid ...>
+	<p:selectheader>
+		<t:checkbox t:id="selectAllCheckbox" value="selectAll" t:mixins="ioko/boundcheckbox"/>
+	</p:selectheader>
+	<p:selectcell>
+		<t:checkbox value="currentSelected" t:mixins="ioko/boundcheckbox" master="selectAllCheckbox"/>
+	</p:selectcell>
+  </t:grid>
++-- 
+
+DisableSorting
+
+ This is a very simple mixin to disable sorting on all columns in a grid component.
+ 
++--
+    <t:grid t:mixins="ioko/disablesorting" .../>
++--
+
+Usage
+
+ Simply add a dependency on this to your project. The mixins are mapped under the prefix 'ioko'.
+
