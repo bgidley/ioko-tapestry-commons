@@ -1,0 +1,9 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd" xmlns:p="tapestry:parameter">
+<head>
+    <title>Tapestry5 Commons Library Test Site</title>
+</head>
+<body>
+<h1>Disable Sorting Page</h1>
+<t:grid t:mixins="ioko/disablesorting" source="dummyItems"/>
+</body>
+</html>
