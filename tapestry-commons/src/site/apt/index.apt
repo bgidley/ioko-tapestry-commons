@@ -14,6 +14,8 @@ The Projects
 
  * {{{./tapestry-javascript/}Tapestry Javascript Stacks}} - Provides a component that provides a contribution point for javascript to be added to every page and de-duplicated.
 
+ * {{{./tapestry-mixins/}Tapestry Mixins }} - Provides a series of mixins that provide Overlays, Bound Checkboxes and Non-sorting grid
+
 
 Using the libraries
 
@@ -46,7 +48,6 @@ Using the libraries
 
 +--
  <repositories>
-        <!-- Chances are, this one is known because that's where this very POM comes from! -->
         <repository>
             <id>tapestry</id>
             <url>http://tapestry.formos.com/maven-repository</url>
