@@ -22,8 +22,8 @@ package uk.co.ioko.tapestry.javascript.services;
 import org.apache.tapestry5.Asset;
 import org.apache.tapestry5.SymbolConstants;
 import org.apache.tapestry5.annotations.Path;
-import org.apache.tapestry5.ioc.Configuration;
 import org.apache.tapestry5.ioc.MappedConfiguration;
+import org.apache.tapestry5.ioc.OrderedConfiguration;
 import org.apache.tapestry5.ioc.annotations.SubModule;
 
 /**
@@ -32,11 +32,15 @@ import org.apache.tapestry5.ioc.annotations.SubModule;
 @SubModule(JavascriptModule.class)
 public class TestModule {
 
-	public static void contributeJavascriptStack(@Path("classpath:/uk/co/ioko/tapestry/javascript/jquery-1.3.2.js") Asset jquery,@Path("classpath:/uk/co/ioko/tapestry/javascript/jquery-1.3.2.min.js")Asset jquerymin, @Path("classpath:/uk/co/ioko/tapestry/javascript/jquery-1.3.2.min.js")Asset jquerymin2, Configuration<Asset> stack){
-		stack.add(jquery);
+	public static void contributeJavascriptStack(
+			@Path("classpath:/uk/co/ioko/tapestry/javascript/jquery-1.3.2.js") Asset jquery,
+			@Path("classpath:/uk/co/ioko/tapestry/javascript/jquery-1.3.2.min.js") Asset jquerymin,
+			@Path("classpath:/uk/co/ioko/tapestry/javascript/jquery-1.3.2.min.js") Asset jquerymin2,
+			OrderedConfiguration<Asset> stack) {
+		stack.add("jquery", jquery);
 		// As a test add jquery in 2 more times. The first should be added (as it is a different filename) the second shouldn't
-		stack.add(jquerymin);
-		stack.add(jquerymin2);
+		stack.add("jquerymin",jquerymin);
+		stack.add("jquerymin2", jquerymin2);
 	}
 
 	public static void contributeApplicationDefaults(MappedConfiguration<String, String> configuration) {

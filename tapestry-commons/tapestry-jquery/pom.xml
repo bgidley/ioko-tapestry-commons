@@ -11,7 +11,7 @@
     <artifactId>tapestry-jquery</artifactId>
     <version>1.3.0-jquery-1.3.2-SNAPSHOT</version>
 
-    <name>tapestry-jquery</name>
+    <name>Tapestry Jquery</name>
 
     <dependencies>
         <dependency>
