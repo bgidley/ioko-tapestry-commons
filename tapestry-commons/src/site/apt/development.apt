@@ -38,11 +38,11 @@ How to do a release
 
  * On HEAD create a tag called vVERSION_NUMBER - e.g. v_1_2_0
 
- * On HEAD search/replace pom's <version>RELEASE-SNAPSHOT</version> to <version>NEW-SNAPSHOT</version>
+ * On HEAD search/replace pom's <version>RELEASE-SNAPSHOT</version> to <version>NEW-SNAPSHOT</version>. You have to do tapestry-jquery seperately as it has a different version to indicate which version of jquery it is bundling.
 
  * Check out the tag
 
- * On the tag search/replace pom's <version>RELEASE-SNAPSHOT</version> to <version>RELEASE</version>
+ * On the tag search/replace pom's <version>RELEASE-SNAPSHOT</version> to <version>RELEASE</version>. You have to do tapestry-jquery seperately as it has a different version to indicate which version of jquery it is bundling.
 
  * Commit to tag
 
