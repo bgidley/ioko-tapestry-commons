@@ -47,7 +47,7 @@
                    <configuration>
                        <archive>
                            <manifestEntries>
-                               <Tapestry-Module-Classes>uk.co.ioko.tapestry.swfObject.uk.co.ioko.tapestry.jquery.services.SwfModule</Tapestry-Module-Classes>
+                               <Tapestry-Module-Classes>uk.co.ioko.tapestry.swfObject.services.SwfModule</Tapestry-Module-Classes>
                            </manifestEntries>
                        </archive>
                    </configuration>

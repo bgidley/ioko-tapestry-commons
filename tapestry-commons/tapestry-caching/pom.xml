@@ -60,7 +60,7 @@
                 <configuration>
                     <archive>
                         <manifestEntries>
-                            <Tapestry-Module-Classes>uk.co.ioko.tapestry.caching.uk.co.ioko.tapestry.jquery.services.CacheModule</Tapestry-Module-Classes>
+                            <Tapestry-Module-Classes>uk.co.ioko.tapestry.caching.services.CacheModule</Tapestry-Module-Classes>
                         </manifestEntries>
                     </archive>
                 </configuration>
