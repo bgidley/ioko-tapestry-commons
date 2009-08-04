@@ -6,11 +6,19 @@
     </properties>
     <body>
 
+        <release version="1.4" date="2009-08-05" description="Version 1.4">
+            <action dev="Ben Gidley" type="fix" issue="IOKOCOMMONS-14">Resolved commons-logging missing/extra dependency
+                issue
+            </action>
+            <action dev="Ben Gidley" type="fix" issue="IOKOCOMMONS-13">Fixed auto loading of modules</action>
+        </release>
+
         <release version="1.3" date="2009-07-14" description="Version 1.3">
             <action dev="Ben Gidley" type="add" issue="IOKOCOMMONS-6">
-                Added tapestry-javascript project to provide easy addition of javascript frameworks. Include JQuery reference library.
+                Added tapestry-javascript project to provide easy addition of javascript frameworks. Include JQuery
+                reference library.
             </action>
-             <action dev="Alfie Kirkpatrick" type="add" issue="IOKOCOMMONS-10">
+            <action dev="Alfie Kirkpatrick" type="add" issue="IOKOCOMMONS-10">
                 Added tapestry-mixins project to provide bound checkbox, overlays and grids that don't sort.
             </action>
         </release>
