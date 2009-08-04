@@ -27,32 +27,32 @@ Using the libraries
  <dependency>
     <groupId>uk.co.ioko</groupId>
     <artifactId>tapestry-caching<artifactId>
-    <version>1.4.0</version>
+    <version>1.5.0</version>
  </dependency>
  <dependency>
     <groupId>uk.co.ioko</groupId>
     <artifactId>tapestry-swfObject<artifactId>
-    <version>1.4.0</version>
+    <version>1.5.0</version>
  </dependency>
  <dependency>
     <groupId>uk.co.ioko</groupId>
     <artifactId>tapestry-cacheControl<artifactId>
-    <version>1.4.0</version>
+    <version>1.5.0</version>
  </dependency>
  <dependency>
     <groupId>uk.co.ioko</groupId>
     <artifactId>tapestry-javascript<artifactId>
-    <version>1.4.0</version>
+    <version>1.5.0</version>
  </dependency>
   <dependency>
     <groupId>uk.co.ioko</groupId>
     <artifactId>tapestry-jquery<artifactId>
-    <version>1.4.0-jquery-1.3.2</version>
+    <version>1.5.0-jquery-1.3.2</version>
  </dependency>
  <dependency>
     <groupId>uk.co.ioko</groupId>
     <artifactId>tapestry-mixins<artifactId>
-    <version>1.4.0</version>
+    <version>1.5.0</version>
  </dependency>
 +--
 
