@@ -28,5 +28,24 @@ public class SwfObjectTest {
 		
 		
 	}
+	
+	/**
+	 * Testing width and height parameters with percentage values
+	 * @throws InterruptedException
+	 */
+	@Test
+	public void testRenderWithPercentageHeightWidth() throws InterruptedException {
+
+		PageTester pageTester = new PageTester("uk.co.ioko.tapestry.swfObject", "Swf", "src/test/webapp");
+		Document document = pageTester.renderPage("SwfObjectTestPage");
+		Assert.assertNotNull(document);
+
+		String content = document.toString();
+
+		// Check for non express install variant
+		Assert.assertTrue(content.contains("[\"/assets/app/1.0/pages/SwfObjectTest.swf\",\"swfObject3\",\"100%\",\"100%\",\"10.0.22\",false,false,{\"Cat\":[\"Parsnip\"],\"Vegetable\":[\"Turnip\"]},{\"Cat\":[\"Parsnip\"],\"Vegetable\":[\"Turnip\"]}]"));
+		
+		
+	}
 
 }

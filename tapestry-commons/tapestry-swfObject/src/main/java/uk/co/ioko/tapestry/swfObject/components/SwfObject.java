@@ -1,6 +1,7 @@
 package uk.co.ioko.tapestry.swfObject.components;
 
 import org.apache.tapestry5.Asset;
+import org.apache.tapestry5.BindingConstants;
 import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.RenderSupport;
 import org.apache.tapestry5.annotations.Environmental;
@@ -27,16 +28,16 @@ public class SwfObject {
 	private ComponentResources resources;
 
 	/**
-	 * The width in pixels
+	 * The width in pixels or percentage(examples: 300,100%)
 	 */
-	@Parameter(required = true)
-	private int width;
+	@Parameter(required = true,defaultPrefix=BindingConstants.LITERAL)
+	private String width;
 
 	/**
-	 * The height in pixels
+	 * The height in pixels or percentage(examples: 300,100%)
 	 */
-	@Parameter(required = true)
-	private int height;
+	@Parameter(required = true,defaultPrefix=BindingConstants.LITERAL)
+	private String height;
 
 	/**
 	 * The minimum flash version. If not set the default of 10.0.22 is used.
@@ -89,9 +90,9 @@ public class SwfObject {
 		// 1
 		parameters.put(clientId);
 		// 2
-		parameters.put(String.valueOf(width));
+		parameters.put(width);
 		//3
-		parameters.put(String.valueOf(height));
+		parameters.put(height);
 		// 4
 		parameters.put(version);
 		// 5
