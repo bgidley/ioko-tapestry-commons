@@ -7,6 +7,7 @@
     <version>1.6.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>ioko Tapestry Commons</name>
+    <url>http://code.google.com/p/ioko-tapestry-commons/</url>
 
     <modules>
         <module>tapestry-caching</module>
@@ -65,8 +66,9 @@
     </contributors>
 
     <scm>
-        <connection>scm:svn:https://tapestry.formos.com/svn/ioko-tapestry-commons/</connection>
-        <url>http://tapestry.formos.com/cgi-bin/viewvc.cgi/ioko-tapestry-commons/</url>
+        <connection>scm:svn:https://ioko-tapestry-commons.googlecode.com/svn/trunk/ioko-tapestry-commons</connection>
+        <url>http://code.google.com/p/ioko-tapestry-commons/source/browse/#svn/trunk/tapestry-commons</url>
+        <developerConnection>https://ioko-tapestry-commons.googlecode.com/svn/trunk/ioko-tapestry-commons</developerConnection>
     </scm>
 
     <build>
