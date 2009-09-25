@@ -76,6 +76,15 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <forkMode>once</forkMode>
+                    <argLine>-Xmx1024M -XX:MaxPermSize=512m</argLine>
+                    <excludedGroups>selenium</excludedGroups>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
                 <executions>
                     <execution>
@@ -228,6 +237,11 @@ oummmmmUUWW9WflhljqXmbpqovjZljjlkpUUnm]]></license>
             <dependency>
                 <groupId>org.seleniumhq.selenium.server</groupId>
                 <artifactId>selenium-server</artifactId>
+                <version>1.0.1</version>
+            </dependency>
+            <dependency>
+                <artifactId>selenium-server-coreless</artifactId>
+                <groupId>org.seleniumhq.selenium.server</groupId>
                 <version>1.0.1</version>
             </dependency>
         </dependencies>

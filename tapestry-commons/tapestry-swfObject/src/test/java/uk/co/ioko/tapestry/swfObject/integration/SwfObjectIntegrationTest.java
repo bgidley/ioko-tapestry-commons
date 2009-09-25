@@ -30,7 +30,7 @@ public class SwfObjectIntegrationTest extends AbstractIntegrationTestSuite {
 		super("src/test/webapp");
 	}
 
-	@Test(groups = "flashRequired")
+	@Test(groups = {"flashRequired", "selenium"})
 	public void testFlashLoader() throws Exception {
 		open(BASE_URL + "SwfObjectTestPage");
 
@@ -45,7 +45,7 @@ public class SwfObjectIntegrationTest extends AbstractIntegrationTestSuite {
 
 	}
 
-	@Test(groups = "flashRequired")
+	@Test(groups = {"flashRequired", "selenium"})
 	public void testAjax() throws Exception {
 		open(BASE_URL + "SwfObjectAjaxPage");
 

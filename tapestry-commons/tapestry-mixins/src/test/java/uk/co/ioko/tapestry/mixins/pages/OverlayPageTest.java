@@ -11,7 +11,7 @@ public class OverlayPageTest extends AbstractIntegrationTestSuite {
 		super("src/test/webapp");
 	}
 
-	@Test
+	@Test(groups = "selenium")
 	public void testOverlay() throws InterruptedException {
 
 		/*

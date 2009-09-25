@@ -13,7 +13,7 @@ public class BoundCheckboxTest extends AbstractIntegrationTestSuite {
 	}
 
 
-	@Test
+	@Test(groups = "selenium")
 	public void testBoundCheckBox(){
 		open(BASE_URL + "BoundCheckboxPage");
 

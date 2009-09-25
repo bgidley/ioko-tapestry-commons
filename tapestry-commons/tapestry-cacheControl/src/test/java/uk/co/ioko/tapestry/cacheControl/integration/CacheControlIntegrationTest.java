@@ -31,35 +31,16 @@ public class CacheControlIntegrationTest extends AbstractIntegrationTestSuite {
 		super("src/test/webapp");
 	}
 
-	@Test
+	@Test(groups = {"selenium"})
 	public void testShortCachedPage() throws Exception {
 
 		// Get the contents of the date time field
 		open(BASE_URL + "CacheControlShortTestPage");
 		String initialDate = getText("//dl[@id='shortlive']/dt[2]");
 
-//		// Wait 1 seconds
-//		Thread.sleep(1000);
-//
-//		// Get the contents of the date time field - this should be cached
-//		clickAndWait("link=Refresh");
-////		open(BASE_URL + "CacheControlShortTestPage");
-//		String interimDate = getText("//dl[@id='shortlive']/dt[2]");
-//
-//		// Wait 3 seconds - short cache is 3 seconds
-//		Thread.sleep(3000);
-//
-//		// Get the contents of the date time field - this should be expired and refreshed
-//		clickAndWait("link=Refresh");
-////		open(BASE_URL + "CacheControlShortTestPage");
-//		String finalDate = getText("//dl[@id='shortlive']/dt[2]");
-//
-//		Assert.assertTrue(initialDate.equals(interimDate), "Initial date "+initialDate+" should be cached and so match interim date "+interimDate+".");
-//		Assert.assertTrue(! initialDate.equals(finalDate), "Initial date "+initialDate+" should have expired and should not match final date "+finalDate+".");
-
 	}
 
-	@Test
+	@Test(groups = {"selenium"})
 	public void testMediumCachedPage() throws Exception {
 		// Get the contents of the date time field
 		open(BASE_URL + "CacheControlMediumTestPage");
@@ -88,7 +69,7 @@ public class CacheControlIntegrationTest extends AbstractIntegrationTestSuite {
 
 	}
 
-	@Test
+	@Test(groups = {"selenium"})
 	public void testLongCachedPage() throws Exception {
 		// Get the contents of the date time field
 		open(BASE_URL + "CacheControlLongTestPage");
@@ -115,7 +96,7 @@ public class CacheControlIntegrationTest extends AbstractIntegrationTestSuite {
 
 	}
 
-	@Test
+	@Test(groups = {"selenium"})
 	public void testFarFutureCachedPage() throws Exception {
 		// Get the contents of the date time field
 		open(BASE_URL + "CacheControlFarFutureTestPage");
@@ -142,7 +123,7 @@ public class CacheControlIntegrationTest extends AbstractIntegrationTestSuite {
 
 	}
 
-	@Test
+	@Test(groups = {"selenium"})
 	public void testNoneCachedPage() throws Exception {
 		open(BASE_URL + "CacheControlNoneTestPage");
 
@@ -162,7 +143,7 @@ public class CacheControlIntegrationTest extends AbstractIntegrationTestSuite {
 	}
 
 
-	@Test
+	@Test(groups = {"selenium"})
 	public void testNeverCachedPage() throws Exception {
 		open(BASE_URL + "CacheControlNeverTestPage");
 
@@ -181,7 +162,7 @@ public class CacheControlIntegrationTest extends AbstractIntegrationTestSuite {
 
 	}
 
-	@Test
+	@Test(groups = {"selenium"})
 	public void testAjaxCachedPage() throws Exception {
 		open(BASE_URL + "CacheControlAjaxPage");
 
