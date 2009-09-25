@@ -68,7 +68,8 @@
     <scm>
         <connection>scm:svn:https://ioko-tapestry-commons.googlecode.com/svn/trunk/ioko-tapestry-commons</connection>
         <url>http://code.google.com/p/ioko-tapestry-commons/source/browse/#svn/trunk/tapestry-commons</url>
-        <developerConnection>scm:svn:https://ioko-tapestry-commons.googlecode.com/svn/trunk/ioko-tapestry-commons</developerConnection>
+        <developerConnection>scm:svn:https://ioko-tapestry-commons.googlecode.com/svn/trunk/ioko-tapestry-commons
+        </developerConnection>
     </scm>
 
     <build>
@@ -217,6 +218,17 @@ oummmmmUUWW9WflhljqXmbpqovjZljjlkpUUnm]]></license>
                 <artifactId>jetty-management</artifactId>
                 <version>${jetty-release-version}</version>
                 <scope>provided</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.seleniumhq.selenium.client-drivers</groupId>
+                <artifactId>selenium-java-client-driver</artifactId>
+                <version>1.0.1</version>
+            </dependency>
+            <dependency>
+                <groupId>org.seleniumhq.selenium.server</groupId>
+                <artifactId>selenium-server</artifactId>
+                <version>1.0.1</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
