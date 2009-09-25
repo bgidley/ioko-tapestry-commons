@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="All">
+	<test name="Non Selenium Tests">
+		<groups>
+			<run>
+				<exclude name="selenium"/>
+			</run>
+		</groups>
+		<packages>
+			<package name="uk.co.ioko.*"/>
+		</packages>
+	</test>
+</suite>
