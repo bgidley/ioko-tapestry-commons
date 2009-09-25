@@ -68,7 +68,7 @@
     <scm>
         <connection>scm:svn:https://ioko-tapestry-commons.googlecode.com/svn/trunk/ioko-tapestry-commons</connection>
         <url>http://code.google.com/p/ioko-tapestry-commons/source/browse/#svn/trunk/tapestry-commons</url>
-        <developerConnection>https://ioko-tapestry-commons.googlecode.com/svn/trunk/ioko-tapestry-commons</developerConnection>
+        <developerConnection>scm:svn:https://ioko-tapestry-commons.googlecode.com/svn/trunk/ioko-tapestry-commons</developerConnection>
     </scm>
 
     <build>
@@ -239,7 +239,7 @@ oummmmmUUWW9WflhljqXmbpqovjZljjlkpUUnm]]></license>
 
     <issueManagement>
         <system>jira</system>
-        <url>http://tapestry.formos.com/jira/browse/IOKOCOMMONS</url>
+        <url>http://code.google.com/p/ioko-tapestry-commons/issues/list</url>
     </issueManagement>
 
 
