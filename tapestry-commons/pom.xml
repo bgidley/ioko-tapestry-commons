@@ -17,6 +17,7 @@
         <module>tapestry-jquery</module>
         <module>tapestry-mixins</module>
         <module>sample-site</module>
+        <module>tapestry-properties</module>
     </modules>
 
     <ciManagement>
