@@ -1,5 +1,6 @@
 package uk.co.ioko.tapestry.properties;
 
+import org.apache.tapestry5.ioc.services.SymbolProvider;
 import org.springframework.util.Assert;
 
 import java.io.IOException;
@@ -22,7 +23,7 @@ import java.util.Properties;
  *
  * @author russellb
  */
-public class PropertiesFileSymbolProvider {
+public class PropertiesFileSymbolProvider implements SymbolProvider {
 	private Map<String, String> symbols = new HashMap<String, String>();
 
 	/**

@@ -6,6 +6,13 @@
     </properties>
     <body>
 
+        <release version="1.6" date="2009-12-15" description="Version 1.6">
+            <action dev="Allan Boyd" type="add" issue="IOKOCOMMONS-16">
+                Added tapestry-properties to provide Tapestry properties related function.
+            </action>
+            <action dev="Ben Gidley" type="fix" issue="IOKOCOMMONS-13">Fixed auto loading of modules</action>
+        </release>
+
         <release version="1.4" date="2009-08-05" description="Version 1.4">
             <action dev="Ben Gidley" type="fix" issue="IOKOCOMMONS-14">Resolved commons-logging missing/extra dependency
                 issue

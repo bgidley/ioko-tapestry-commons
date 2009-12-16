@@ -1,0 +1,6 @@
+Tapestry Properties
+
+This module provides functions relating to properties.
+
+PropertiesFileSymbolProvider - is an implementation of org.apache.tapestry5.ioc.services.SymbolProvider that reads
+properties from one or more properties files.
