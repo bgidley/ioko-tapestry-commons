@@ -4,12 +4,12 @@
     <parent>
         <artifactId>ioko-tapestry-commons</artifactId>
         <groupId>uk.co.ioko</groupId>
-        <version>1.6.0-SNAPSHOT</version>
+        <version>1.7.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <groupId>uk.co.ioko</groupId>
     <artifactId>tapestry-jquery</artifactId>
-    <version>1.6.0-jquery-1.3.2-SNAPSHOT</version>
+    <version>1.7.0-jquery-1.3.2-SNAPSHOT</version>
 
     <name>Tapestry Jquery</name>
 
