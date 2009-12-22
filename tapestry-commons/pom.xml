@@ -253,17 +253,16 @@ oummmmmUUWW9WflhljqXmbpqovjZljjlkpUUnm]]></license>
     <distributionManagement>
         <repository>
             <id>tapestry</id>
-            <url>file:\\\C:\maven-repository</url>
+            <url>file:/var/www/maven-repository</url>
         </repository>
         <snapshotRepository>
             <id>tapestry-snapshot</id>
-            <url>file:\\\C:\maven-snapshot-repository</url>
+            <url>file:/var/www/maven-snapshot-repository</url>
         </snapshotRepository>
         <site>
             <!-- Overridden by the deploy profile. -->
             <!-- Maven will tack on the artifact id. -->
-            <id>ioko-tapestry-commons</id>
-            <url>file:\\\C:\ioko-tapestry-commons</url>
+            <url>file:/var/www/nightly/ioko-tapestry-commons</url>
         </site>
     </distributionManagement>
 
