@@ -45,51 +45,32 @@ import java.util.Locale;
 public class CacheControlMarkupRenderer implements MarkupRendererFilter, PartialMarkupRendererFilter {
 	private final Asset script;
 
-	private static final FastDateFormat DATE_FORMAT = FastDateFormat.getInstance("EEE, dd MMM yyyy HH:mm:ss z",
-			Locale.UK);
-	private final int mediumCacheTime;
-	private final int shortCacheTime;
-	private final int longCacheTime;
 	private final Response response;
-	private static final String CACHE_CONTROL_HEADER = "Cache-Control";
-	private static final String PRAGMA_HEADER = "Pragma";
-	private final int farFutureCacheTime;
+
 	private final CacheControlSupport cacheControlSupport;
 	private final Environment environment;
 	private boolean enableEventHeaders;
+	private CacheControlHeaderWriter cacheControlHeaderWriter;
 
 	public CacheControlMarkupRenderer(final Environment enviroment,
-									  @Path("/uk/co/ioko/tapestry/cacheControl/CacheControl.js") final Asset script,
-									  @Symbol("cacheControl.short") final int shortCacheTime,
-									  @Symbol("cacheControl.medium") final int mediumCacheTime,
-									  @Symbol("cacheControl.long") final int longCacheTime,
-									  @Symbol("cacheControl.farFuture") final int farFutureCacheTime,
-									  @Symbol("cacheControl.enableEventHeaders") final boolean enableEventHeaders,
-									  final Response response,
-									  final CacheControlSupport cacheControlSupport) {
+			@Path("/uk/co/ioko/tapestry/cacheControl/CacheControl.js") final Asset script,
+			@Symbol("cacheControl.enableEventHeaders") final boolean enableEventHeaders,
+			final Response response,
+			final CacheControlSupport cacheControlSupport,
+			final CacheControlHeaderWriter cacheControlHeaderWriter) {
 		this.script = script;
-		this.longCacheTime = longCacheTime;
-		this.shortCacheTime = shortCacheTime;
-		this.mediumCacheTime = mediumCacheTime;
+
 		this.response = response;
-		this.farFutureCacheTime = farFutureCacheTime;
 		this.cacheControlSupport = cacheControlSupport;
 		this.environment = enviroment;
 		this.enableEventHeaders = enableEventHeaders;
+		this.cacheControlHeaderWriter = cacheControlHeaderWriter;
 	}
 
 	public void renderMarkup(MarkupWriter writer, JSONObject reply, PartialMarkupRenderer renderer) {
 		renderer.renderMarkup(writer, reply);
-
 		CacheType cacheType = cacheControlSupport.getCacheType();
-		if (!(cacheType == CacheType.NONE)) {
-			// We should process headers
-			if (cacheType == CacheType.NEVER) {
-				addNeverHeaders();
-			} else {
-				addRelativeHeaders(calculate(cacheType));
-			}
-		}
+		cacheControlHeaderWriter.setHeaderOnResponse(response, cacheType);
 	}
 
 	public void renderMarkup(MarkupWriter writer, MarkupRenderer renderer) {
@@ -103,53 +84,8 @@ public class CacheControlMarkupRenderer implements MarkupRendererFilter, Partial
 		renderer.renderMarkup(writer);
 
 		CacheType cacheType = cacheControlSupport.getCacheType();
-		if (!(cacheType == CacheType.NONE)) {
-			// We should process headers
-			if (cacheType == CacheType.NEVER) {
-				addNeverHeaders();
-			} else {
-				addRelativeHeaders(calculate(cacheType));
-			}
-		}
+		cacheControlHeaderWriter.setHeaderOnResponse(response, cacheType);
 	}
 
-	/**
-	 * Returns the cache time for this cache type
-	 *
-	 * @param cacheType
-	 * @return The time (in seconds) to cache)
-	 */
 
-	private int calculate(CacheType cacheType) {
-		if (cacheType == CacheType.LONG) {
-			return longCacheTime;
-		} else if (cacheType == CacheType.MEDIUM) {
-			return mediumCacheTime;
-		} else if (cacheType == CacheType.FAR_FUTURE) {
-			return farFutureCacheTime;
-		} else {
-			return shortCacheTime;
-		}
-	}
-
-	/**
-	 * Add never (or no-cache headers) to try and force no caching
-	 */
-	private void addNeverHeaders() {
-		response.setHeader(CACHE_CONTROL_HEADER, "no-cache");
-		response.setHeader(PRAGMA_HEADER, "No-Cache");
-
-	}
-
-	/**
-	 * Add relative header
-	 *
-	 * @param timeInSeconds
-	 */
-	private void addRelativeHeaders(int timeInSeconds) {
-		response.setHeader(CACHE_CONTROL_HEADER, String.format("max-age=%d", timeInSeconds));
-		Calendar expires = Calendar.getInstance();
-		expires.add(Calendar.SECOND, timeInSeconds);
-		response.setHeader("Expires", DATE_FORMAT.format(expires));
-	}
 }

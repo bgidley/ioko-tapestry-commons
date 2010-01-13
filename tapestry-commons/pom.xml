@@ -7,7 +7,7 @@
     <version>1.7.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>ioko Tapestry Commons</name>
-    <url>http://code.google.com/p/ioko-tapestry-commons/</url>
+    <url>http://tapestry.ioko.com</url>
     
     <modules>
         <module>tapestry-caching</module>
@@ -24,6 +24,10 @@
         <system>bamboo</system>
         <url>http://tapestry.formos.com/bamboo/</url>
     </ciManagement>
+
+    <issueManagement>
+        <url>http://code.google.com/p/ioko-tapestry-commons/issues/list</url>   
+    </issueManagement>
 
 
     <licenses>
@@ -266,12 +270,6 @@ oummmmmUUWW9WflhljqXmbpqovjZljjlkpUUnm]]></license>
         </site>
     </distributionManagement>
 
-    <issueManagement>
-        <system>jira</system>
-        <url>http://code.google.com/p/ioko-tapestry-commons/issues/list</url>
-    </issueManagement>
-
-
     <repositories>
         <!-- Chances are, this one is known because that's where this very POM comes from! -->
         <repository>
@@ -387,9 +385,9 @@ oummmmmUUWW9WflhljqXmbpqovjZljjlkpUUnm]]></license>
                         <configuration>
                             <forkMode>once</forkMode>
                             <argLine>-Xmx1024M -XX:MaxPermSize=512m</argLine>
-                           <suiteXmlFiles>
-                        <suiteXmlFile>src/test/resources/testng_selenium.xml</suiteXmlFile>
-                    </suiteXmlFiles>
+                            <suiteXmlFiles>
+                                <suiteXmlFile>src/test/resources/testng_selenium.xml</suiteXmlFile>
+                            </suiteXmlFiles>
                         </configuration>
                     </plugin>
                 </plugins>
@@ -445,6 +443,26 @@ oummmmmUUWW9WflhljqXmbpqovjZljjlkpUUnm]]></license>
                     </plugin>
                 </plugins>
             </reporting>
+        </profile>
+        <profile>
+            <id>localsite</id>
+            <distributionManagement>
+                <repository>
+                    <id>tapestry</id>
+                    <url>file:/tmp/site/maven-repository</url>
+                </repository>
+                <snapshotRepository>
+                    <id>tapestry-snapshot</id>
+                    <url>file:/tmp/site/maven-snapshot-repository</url>
+                </snapshotRepository>
+                <site>
+                    <id>local</id>
+                    <!-- Overridden by the deploy profile. -->
+                    <!-- Maven will tack on the artifact id. -->
+                    <url>file:/tmp/site</url>
+                </site>
+            </distributionManagement>
+
         </profile>
     </profiles>
 </project>
