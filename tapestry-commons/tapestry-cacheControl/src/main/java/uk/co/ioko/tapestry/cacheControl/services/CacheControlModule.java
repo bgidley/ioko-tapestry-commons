@@ -47,6 +47,7 @@ public class CacheControlModule {
 		binder.bind(CacheControlFilter.class);
 		binder.bind(CacheControlMarkupRenderer.class);
 		binder.bind(CacheControlSupport.class, CacheControlSupportImpl.class);
+		binder.bind(CacheControlHeaderWriter.class);
 	}
 
 	public void contributePageRenderRequestHandler(OrderedConfiguration<PageRenderRequestFilter> configuration,
