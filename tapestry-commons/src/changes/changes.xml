@@ -5,6 +5,13 @@
         <author email="ben@gidley.co.uk">Ben Gidley</author>
     </properties>
     <body>
+        <release version="1.7" date="2010-01-14" description="Version 1.7">
+            <action dev="Ben Gidley" type="add" issue="6">
+                Added service to allow you to pass in a response and recieved headers. This is useful for
+                TextStreamResponses
+            </action>
+
+        </release>
 
         <release version="1.6" date="2009-12-15" description="Version 1.6">
             <action dev="Allan Boyd" type="add" issue="IOKOCOMMONS-16">

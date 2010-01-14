@@ -21,8 +21,7 @@
     </modules>
 
     <ciManagement>
-        <system>bamboo</system>
-        <url>http://tapestry.formos.com/bamboo/</url>
+        <system>Team City</system>
     </ciManagement>
 
     <issueManagement>
@@ -253,23 +252,22 @@ oummmmmUUWW9WflhljqXmbpqovjZljjlkpUUnm]]></license>
             </dependency>
         </dependencies>
     </dependencyManagement>
-
     <distributionManagement>
         <repository>
             <id>tapestry</id>
-            <url>file:/var/www/maven-repository</url>
+            <url>file:/tmp/site/maven-repository</url>
         </repository>
         <snapshotRepository>
             <id>tapestry-snapshot</id>
-            <url>file:/var/www/maven-snapshot-repository</url>
+            <url>file:/tmp/site/maven-snapshot-repository</url>
         </snapshotRepository>
         <site>
+            <id>local</id>
             <!-- Overridden by the deploy profile. -->
             <!-- Maven will tack on the artifact id. -->
-            <url>file:/var/www/nightly/ioko-tapestry-commons</url>
+            <url>file:/tmp/site</url>
         </site>
     </distributionManagement>
-
     <repositories>
         <!-- Chances are, this one is known because that's where this very POM comes from! -->
         <repository>
@@ -363,9 +361,9 @@ oummmmmUUWW9WflhljqXmbpqovjZljjlkpUUnm]]></license>
     <profiles>
         <profile>
             <!-- Used only when cuttting a full release.  Configures the deploy plugin to mark
-          each artifact as a release (especially important for the archetype). Signs each
-          file deployed (it actually signs way too many files and we have to clean up a bit
-          once deployed). -->
+                              each artifact as a release (especially important for the archetype). Signs each
+                              file deployed (it actually signs way too many files and we have to clean up a bit
+                              once deployed). -->
             <id>deploy</id>
             <distributionManagement>
                 <site>
@@ -393,103 +391,48 @@ oummmmmUUWW9WflhljqXmbpqovjZljjlkpUUnm]]></license>
                 </plugins>
             </build>
         </profile>
-        <profile>
-            <id>bamboo</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <artifactId>maven-antrun-plugin</artifactId>
-                        <inherited>false</inherited>
-                        <executions>
-                            <execution>
-                                <phase>compile</phase>
-                                <configuration>
-                                    <tasks>
-                                        <ant antfile="${basedir}/build.xml">
-                                            <target name="CopyRedirect"/>
-                                        </ant>
-                                    </tasks>
-                                </configuration>
-                                <goals>
-                                    <goal>run</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
+    </profiles>
 
-        </profile>
 
-        <profile>
-            <id>site</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <artifactId>maven-site-plugin</artifactId>
-                    </plugin>
-                </plugins>
-            </build>
-            <reporting>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-javadoc-plugin</artifactId>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-jxr-plugin</artifactId>
-                    </plugin>
-                    <plugin>
-                        <groupId>com.atlassian.maven.plugins</groupId>
-                        <artifactId>maven-clover2-plugin</artifactId>
-                        <configuration>
-                            <generateHistorical>true</generateHistorical>
-                            <generatePdf>false</generatePdf>
-                            <generateXml>true</generateXml>
-                            <generateHtml>true</generateHtml>
-                            <historyDir>${user.home}/history/${project.artifactId}</historyDir>
-                            <license><![CDATA[qOpPtrkGUADqDiteXtCOjdEqQPqsrGQHRvRWrPQlldbqON
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jxr-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>com.atlassian.maven.plugins</groupId>
+                <artifactId>maven-clover2-plugin</artifactId>
+                <configuration>
+                    <generateHistorical>true</generateHistorical>
+                    <generatePdf>false</generatePdf>
+                    <generateXml>true</generateXml>
+                    <generateHtml>true</generateHtml>
+                    <historyDir>${user.home}/history/${project.artifactId}</historyDir>
+                    <license><![CDATA[qOpPtrkGUADqDiteXtCOjdEqQPqsrGQHRvRWrPQlldbqON
 mi2KX50bV3fycqvgMxTHEGoI2KRTCmUWqaNouR<7YKjlim
 qpNQwXorqQPQmNqMOmntxrrrQpnmRPNMqQWunQrOwsstrs
 vTUvStUoSUwSxssSumMnmqmUUnoqrrvoummmmmUUnoqrrv
 oummmmmUUWW9WflhljqXmbpqovjZljjlkpUUnm]]></license>
-                            <contextFilters>catch,finally</contextFilters>
-                        </configuration>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-changes-plugin</artifactId>
-                        <reportSets>
-                            <reportSet>
-                                <reports>
-                                    <report>changes-report</report>
-                                </reports>
-                            </reportSet>
-                        </reportSets>
-                    </plugin>
-                </plugins>
-            </reporting>
-        </profile>
-        <profile>
-            <id>localsite</id>
-            <distributionManagement>
-                <repository>
-                    <id>tapestry</id>
-                    <url>file:/tmp/site/maven-repository</url>
-                </repository>
-                <snapshotRepository>
-                    <id>tapestry-snapshot</id>
-                    <url>file:/tmp/site/maven-snapshot-repository</url>
-                </snapshotRepository>
-                <site>
-                    <id>local</id>
-                    <!-- Overridden by the deploy profile. -->
-                    <!-- Maven will tack on the artifact id. -->
-                    <url>file:/tmp/site</url>
-                </site>
-            </distributionManagement>
+                    <contextFilters>catch,finally</contextFilters>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-changes-plugin</artifactId>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>changes-report</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+        </plugins>
+    </reporting>
 
-        </profile>
-    </profiles>
 </project>
