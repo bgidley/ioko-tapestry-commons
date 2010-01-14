@@ -23,12 +23,12 @@
     <parent>
         <artifactId>ioko-tapestry-commons</artifactId>
         <groupId>uk.co.ioko</groupId>
-        <version>1.7.0-SNAPSHOT</version>
+        <version>1.8.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <groupId>uk.co.ioko</groupId>
     <artifactId>tapestry-javascript</artifactId>
-    <version>1.7.0-SNAPSHOT</version>
+    <version>1.8.0-SNAPSHOT</version>
     <name>Tapestry Javascript</name>
 
 
