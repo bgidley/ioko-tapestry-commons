@@ -402,7 +402,7 @@ oummmmmUUWW9WflhljqXmbpqovjZljjlkpUUnm]]></license>
                         <inherited>false</inherited>
                         <executions>
                             <execution>
-                                <phase>package</phase>
+                                <phase>compile</phase>
                                 <configuration>
                                     <tasks>
                                         <ant antfile="${basedir}/build.xml">
