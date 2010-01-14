@@ -8,7 +8,7 @@
     <packaging>pom</packaging>
     <name>ioko Tapestry Commons</name>
     <url>http://tapestry.ioko.com</url>
-    
+
     <modules>
         <module>tapestry-caching</module>
         <module>tapestry-swfObject</module>
@@ -26,7 +26,7 @@
     </ciManagement>
 
     <issueManagement>
-        <url>http://code.google.com/p/ioko-tapestry-commons/issues/list</url>   
+        <url>http://code.google.com/p/ioko-tapestry-commons/issues/list</url>
     </issueManagement>
 
 
@@ -398,9 +398,35 @@ oummmmmUUWW9WflhljqXmbpqovjZljjlkpUUnm]]></license>
             <build>
                 <plugins>
                     <plugin>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <phase>package</phase>
+                                <configuration>
+                                    <tasks>
+                                        <ant antfile="${basedir}/build.xml">
+                                            <target name="CopyRedirect"/>
+                                        </ant>
+                                    </tasks>
+                                </configuration>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+
+        </profile>
+
+        <profile>
+            <id>site</id>
+            <build>
+                <plugins>
+                    <plugin>
                         <artifactId>maven-site-plugin</artifactId>
                     </plugin>
-
                 </plugins>
             </build>
             <reporting>

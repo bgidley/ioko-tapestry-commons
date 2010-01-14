@@ -1,0 +1,8 @@
+<project name="CopyRedirect">
+
+    <target name="CopyRedirect">
+        <copy file="src/index.html" todir="/var/www/nightly/ioko-tapestry-commons"/>
+        <copy file="src/index.html" todir="/var/www/projects/ioko-tapestry-commons"/>
+    </target>
+
+</project>
