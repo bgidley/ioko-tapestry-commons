@@ -19,6 +19,7 @@
 
 package uk.co.ioko.tapestry.cacheControl.services;
 
+import org.apache.tapestry5.ioc.annotations.Symbol;
 import org.apache.tapestry5.model.MutableComponentModel;
 import org.apache.tapestry5.services.ClassTransformation;
 import org.apache.tapestry5.services.ComponentClassTransformWorker;
@@ -30,6 +31,11 @@ import uk.co.ioko.tapestry.cacheControl.annotations.CacheType;
  */
 public class CacheControlTransformer implements ComponentClassTransformWorker {
 	public static final String CACHE_TYPE_METADATA = "cacheControl.CacheType";
+	private String defaultCacheType;
+
+	public CacheControlTransformer(String defaultCacheType){
+		this.defaultCacheType = defaultCacheType;
+	}
 
 	/**
 	 * Store the caching information in the component model
@@ -43,7 +49,7 @@ public class CacheControlTransformer implements ComponentClassTransformWorker {
 		if (cacheControl != null) {
 			model.setMeta(CACHE_TYPE_METADATA, cacheControl.cacheType().name());
 		} else {
-			model.setMeta(CACHE_TYPE_METADATA, CacheType.NEVER.name());
+			model.setMeta(CACHE_TYPE_METADATA, defaultCacheType);
 		}
 	}
 }

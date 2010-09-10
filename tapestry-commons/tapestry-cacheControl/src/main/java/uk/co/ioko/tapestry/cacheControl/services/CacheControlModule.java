@@ -23,6 +23,8 @@ import org.apache.tapestry5.ioc.Configuration;
 import org.apache.tapestry5.ioc.MappedConfiguration;
 import org.apache.tapestry5.ioc.OrderedConfiguration;
 import org.apache.tapestry5.ioc.ServiceBinder;
+import org.apache.tapestry5.ioc.annotations.InjectService;
+import org.apache.tapestry5.ioc.annotations.Symbol;
 import org.apache.tapestry5.ioc.services.Coercion;
 import org.apache.tapestry5.ioc.services.CoercionTuple;
 import org.apache.tapestry5.services.ComponentClassTransformWorker;
@@ -48,17 +50,19 @@ public class CacheControlModule {
 		binder.bind(CacheControlMarkupRenderer.class);
 		binder.bind(CacheControlSupport.class, CacheControlSupportImpl.class);
 		binder.bind(CacheControlHeaderWriter.class);
+
 	}
 
 	public void contributePageRenderRequestHandler(OrderedConfiguration<PageRenderRequestFilter> configuration,
-												   final CacheControlFilter cacheControlFilter) {
+			final CacheControlFilter cacheControlFilter) {
 
 		configuration.add("CacheControlFilter", cacheControlFilter);
 	}
 
 	public static void contributeComponentClassTransformWorker(
-			OrderedConfiguration<ComponentClassTransformWorker> configuration) {
-		configuration.add("CacheControlTransformer", new CacheControlTransformer());
+			OrderedConfiguration<ComponentClassTransformWorker> configuration,
+			@Symbol("cacheControl.default") String cacheControlDefault) {
+		configuration.add("CacheControlTransformer", new CacheControlTransformer(cacheControlDefault));
 
 	}
 
@@ -71,7 +75,8 @@ public class CacheControlModule {
 
 	public static void contributeFactoryDefaults(MappedConfiguration<String, String> configuration) {
 		// Set the default caching to none
-		configuration.add(CacheControlTransformer.CACHE_TYPE_METADATA, CacheType.NEVER.name());
+		configuration.add("cacheControl.default", CacheType.NONE.name());
+
 		// 5 minutes
 		configuration.add("cacheControl.short", String.valueOf(300));
 		// 1 hour
@@ -84,6 +89,7 @@ public class CacheControlModule {
 		// Disable event caching by default as it may cause issues with private data sharing if not properly configured
 		configuration.add("cacheControl.enableEventHeaders", String.valueOf(false));
 
+
 	}
 
 	/**
@@ -95,13 +101,13 @@ public class CacheControlModule {
 	 * @param configuration
 	 */
 	public void contributeMarkupRenderer(OrderedConfiguration<MarkupRendererFilter> configuration,
-										 CacheControlMarkupRenderer cacheControlMarkupRenderer) {
+			CacheControlMarkupRenderer cacheControlMarkupRenderer) {
 
 		configuration.add("CacheControl", cacheControlMarkupRenderer, "after:RenderSupport");
 	}
 
 	public void contributePartialMarkupRenderer(OrderedConfiguration<PartialMarkupRendererFilter> configuration,
-												CacheControlMarkupRenderer cacheControlMarkupRenderer) {
+			CacheControlMarkupRenderer cacheControlMarkupRenderer) {
 
 		configuration.add("CacheControlPartial", cacheControlMarkupRenderer, "after:RenderSupport");
 

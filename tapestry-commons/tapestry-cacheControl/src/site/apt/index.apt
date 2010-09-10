@@ -43,11 +43,13 @@ Cache Type
 
 Default Cache Type
 
- The library also has a default cache header applied to all pages. This default is set (by default) to NEVER.
+ The library also has a default cache header applied to all pages. This default is set (by default) to NONE which does nothing.
  This can also be changed by contributing a default
 
+ e.g. changing it to NEVER would require the following
+
 +--
-     configuration.add(CacheControlTransformer.CACHE_TYPE_METADATA, CacheType.NONE);
+     configuration.add("cacheControl.default", CacheType.NEVER.name());
 +--
 
 AJAX Event Caching
@@ -104,9 +106,3 @@ Implementation Notes
  after (or before) this overide occurs. In reality this is unlikely to be an issue as AJAX doesn't generally occur on page
  load - and if you wanted to do that putting your call in an init function should solve the issue.
 
- One side effect of changing from POST to GET is all AJAX requests will need cache headers to stop them being cached. Therefore
- is you enable AJAX caching you should change the default cacheType to be NEVER in your application defaults
-
-+--
-      configuration.add(CacheControlTransformer.CACHE_TYPE_METADATA, CacheType.NEVER);
-+--
