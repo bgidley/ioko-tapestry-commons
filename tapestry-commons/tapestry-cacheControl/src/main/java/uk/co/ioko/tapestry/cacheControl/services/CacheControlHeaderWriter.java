@@ -23,7 +23,7 @@ public class CacheControlHeaderWriter {
 	private static final String PRAGMA_HEADER = "Pragma";
 
 	private static final FastDateFormat DATE_FORMAT = FastDateFormat.getInstance("EEE, dd MMM yyyy HH:mm:ss z",
-			TimeZone.getTimeZone("UTC"),
+			TimeZone.getTimeZone("GMT"),
 			Locale.UK);
 
 
