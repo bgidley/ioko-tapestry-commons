@@ -7,6 +7,7 @@ import uk.co.ioko.tapestry.cacheControl.annotations.CacheType;
 
 import java.util.Calendar;
 import java.util.Locale;
+import java.util.TimeZone;
 
 /**
  * Created by IntelliJ IDEA. User: ben Date: Jan 13, 2010 Time: 4:32:58 PM
@@ -22,10 +23,10 @@ public class CacheControlHeaderWriter {
 	private static final String PRAGMA_HEADER = "Pragma";
 
 	private static final FastDateFormat DATE_FORMAT = FastDateFormat.getInstance("EEE, dd MMM yyyy HH:mm:ss z",
-				Locale.UK);
+			TimeZone.getTimeZone("UTC"),
+			Locale.UK);
 
 
-	
 	public CacheControlHeaderWriter(@Symbol("cacheControl.short") final int shortCacheTime,
 			@Symbol("cacheControl.medium") final int mediumCacheTime,
 			@Symbol("cacheControl.long") final int longCacheTime,
