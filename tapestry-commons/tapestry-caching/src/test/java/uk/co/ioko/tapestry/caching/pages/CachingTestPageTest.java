@@ -19,8 +19,11 @@
 
 package uk.co.ioko.tapestry.caching.pages;
 
+import java.util.List;
+
 import org.apache.tapestry5.dom.Document;
 import org.apache.tapestry5.dom.Element;
+import org.apache.tapestry5.dom.Node;
 import org.apache.tapestry5.dom.Raw;
 import org.apache.tapestry5.test.PageTester;
 import org.testng.Assert;
@@ -35,9 +38,8 @@ public class CachingTestPageTest {
 	public void testCaching() throws InterruptedException {
 
 		PageTester pageTester = new PageTester("uk.co.ioko.tapestry.caching", "Test", "src/test/webapp");
-	 	Document document = pageTester.renderPage("CachingTestPage");
+		Document document = pageTester.renderPage("CachingTestPage");
 		Assert.assertNotNull(document);
-
 
 		Element caching = document.getElementById("cached");
 
@@ -45,7 +47,11 @@ public class CachingTestPageTest {
 		Element live = document.getElementById("live");
 		String liveDate = ((Element) live.getChildren().get(1)).getChildMarkup();
 		Element cachedKey = document.getElementById("cachedWithKey");
-		String cachedWithKeyDate = ((Element)cachedKey.getChildren().get(1)).getChildMarkup();
+		String cachedWithKeyDate = ((Element) cachedKey.getChildren().get(1)).getChildMarkup();
+		Element script = getScriptElement(document.getRootElement().getChildren());
+		Assert
+				.assertTrue(script.getChildMarkup()
+						.indexOf("Tapestry.init({\"zone\":[\"helloZone1\",\"helloZone2\"]})") > 0);
 
 		Assert.assertEquals(liveDate, cachedDate);
 		Assert.assertEquals(liveDate, cachedWithKeyDate);
@@ -55,14 +61,14 @@ public class CachingTestPageTest {
 		// Render the page again
 		Document document2 = pageTester.renderPage("CachingTestPage");
 
-		// We can't just get the element by ID are cahced items come through as raw
+		// We can't just get the element by ID as cached items come through as raw
 		Raw rawCached = (Raw) ((Element) document2.getRootElement().getChildren().get(1)).getChildren().get(2);
 		String raw = rawCached.toString();
 		int indexOfDd = raw.lastIndexOf("<dd>");
 		int indexOfCloseDd = raw.lastIndexOf("</dd>");
 		String cachedDate2 = raw.substring(indexOfDd + 4, indexOfCloseDd);
 
-		Raw rawCachedKey =  (Raw) ((Element) document2.getRootElement().getChildren().get(1)).getChildren().get(3);
+		Raw rawCachedKey = (Raw) ((Element) document2.getRootElement().getChildren().get(1)).getChildren().get(3);
 		String rawKey = rawCachedKey.toString();
 		indexOfDd = rawKey.lastIndexOf("<dd>");
 		indexOfCloseDd = rawKey.lastIndexOf("</dd>");
@@ -77,15 +83,36 @@ public class CachingTestPageTest {
 		Assert.assertEquals(cachedDate, cachedDate2);
 
 		Assert.assertEquals(cachedWithKeyDate, cachedWithKeyDate2);
+
+		// zones should have been initialised as expected despite being inside the cached parts of the page - this tests
+		// ClientBehaviorSupportPlayer/Recorder
+		script = getScriptElement(document2.getRootElement().getChildren());
+		Assert
+				.assertTrue(script.getChildMarkup()
+						.indexOf("Tapestry.init({\"zone\":[\"helloZone1\",\"helloZone2\"]})") > 0);
 	}
 
 	@Test
 	public void testOverideCaching() throws InterruptedException {
-
 		PageTester pageTester = new PageTester("uk.co.ioko.tapestry.caching", "TestOverideConfig", "src/test/webapp");
-	 	Document document = pageTester.renderPage("CachingTestPage");
+		Document document = pageTester.renderPage("CachingTestPage");
 		Assert.assertNotNull(document);
-
 	}
 
+	private Element getScriptElement(List<Node> nodes) {
+		for (Node node : nodes) {
+			if (node instanceof Element) {
+				Element element = (Element) node;
+				if (element.getName().equals("script") && (element.getAttribute("src") == null)) {
+					return element;
+				} else {
+					Element scriptElement = getScriptElement(element.getChildren());
+					if (scriptElement != null) {
+						return scriptElement;
+					}
+				}
+			}
+		}
+		return null;
+	}
 }

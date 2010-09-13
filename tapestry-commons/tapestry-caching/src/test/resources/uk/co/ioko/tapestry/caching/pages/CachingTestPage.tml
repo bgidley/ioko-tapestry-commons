@@ -36,11 +36,15 @@
 <dl id="cached" t:type="ioko/Cache">
     <dt>Time in cache</dt>
     <dd>${now}</dd>
+    <p t:type="zone" t:id="helloZone1">Hello ${name}</p>
 </dl>
 
 <dl id="cachedWithKey" t:type="ioko/Cache" cacheKey="testCacheKey">
     <dt>Time in cache</dt>
     <dd>${now}</dd>
+    <p t:type="zone" t:id="helloZone2">Hello ${name}</p>
 </dl>
+
 </body>
+
 </html>

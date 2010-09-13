@@ -30,7 +30,11 @@ import org.apache.tapestry5.annotations.Parameter;
 import org.apache.tapestry5.annotations.SupportsInformalParameters;
 import org.apache.tapestry5.dom.Element;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.services.ClientBehaviorSupport;
 import org.apache.tapestry5.services.Environment;
+
+import uk.co.ioko.tapestry.caching.services.ClientBehaviorSupportPlayer;
+import uk.co.ioko.tapestry.caching.services.ClientBehaviorSupportRecorder;
 import uk.co.ioko.tapestry.caching.services.ContentCache;
 import uk.co.ioko.tapestry.caching.services.RenderSupportPlayer;
 import uk.co.ioko.tapestry.caching.services.RenderSupportRecorder;
@@ -43,24 +47,22 @@ public class Cache {
 	private static final String CACHE_KEY_SEPARATOR = ":";
 
 	/**
-	 * Specifies how long this content should be cached for - should be 'short', 'medium' or 'long'
-	 * (case-insensitive) as defined by the CacheRegion enum.
+	 * Specifies how long this content should be cached for - should be 'short', 'medium' or 'long' (case-insensitive)
+	 * as defined by the CacheRegion enum.
 	 */
-	@Parameter(defaultPrefix = BindingConstants.LITERAL, value="medium")
+	@Parameter(defaultPrefix = BindingConstants.LITERAL, value = "medium")
 	private CacheRegion cacheRegion;
 
 	/**
-	 * By default, cached components are keyed on their full class name.  If you wish to provide your
-	 * own key you can do so by providing a cacheKey.  Note that this will override the cacheKeySuffix
-	 * parameter.
+	 * By default, cached components are keyed on their full class name. If you wish to provide your own key you can do
+	 * so by providing a cacheKey. Note that this will override the cacheKeySuffix parameter.
 	 */
 	@Parameter(defaultPrefix = BindingConstants.LITERAL)
 	private String cacheKey;
 
 	/**
-	 * By default, cached components are keyed on their full class name.  If this granularity is
-	 * insufficient, you can provide a cacheKeySuffix that will differentiate between different
-	 * instances of the same component.
+	 * By default, cached components are keyed on their full class name. If this granularity is insufficient, you can
+	 * provide a cacheKeySuffix that will differentiate between different instances of the same component.
 	 */
 	@Parameter(defaultPrefix = BindingConstants.LITERAL)
 	private String cacheKeySuffix;
@@ -72,6 +74,9 @@ public class Cache {
 
 	@Environmental
 	private RenderSupport renderSupport;
+
+	@Environmental
+	private ClientBehaviorSupport clientBehaviorSupport;
 
 	@Inject
 	private Environment environment;
@@ -95,9 +100,15 @@ public class Cache {
 			return true;
 		}
 		markupWriter.writeRaw(content.getContent());
-		// this will re-call all the methods we called previously
+
+		// this will re-call all the RenderSupport methods we called previously
 		RenderSupportPlayer rsPlayer = new RenderSupportPlayer(renderSupport);
-		rsPlayer.playbackMethodCalls(content.getMethodCalls());
+		rsPlayer.playbackMethodCalls(content.getRenderSupportMethodCalls());
+
+		// this will re-call all the ClientBehaviorSupport methods we called previously
+		ClientBehaviorSupportPlayer cbsPlayer = new ClientBehaviorSupportPlayer(clientBehaviorSupport);
+		cbsPlayer.playbackMethodCalls(content.getClientBehaviorSupportMethodCalls());
+
 		return false;
 	}
 
@@ -106,33 +117,38 @@ public class Cache {
 		currentElement = markupWriter.element(element);
 		componentResources.renderInformalParameters(markupWriter);
 
-		// System.out.println("begin render: " + ++br);
-		RenderSupportRecorder rsRecorder = new RenderSupportRecorder(renderSupport);
 		// this replaces the instance of RenderSupport for this thread only
+		RenderSupportRecorder rsRecorder = new RenderSupportRecorder(renderSupport);
 		environment.push(RenderSupport.class, rsRecorder);
+
+		// this replaces the instance of ClientBehaviorSupport for this thread only
+		ClientBehaviorSupportRecorder cbsRecorder = new ClientBehaviorSupportRecorder(clientBehaviorSupport);
+		environment.push(ClientBehaviorSupport.class, cbsRecorder);
 	}
 
 	@AfterRender
 	void afterRender(MarkupWriter markupWriter) {
-
 		// end markup
 		markupWriter.end();
 
 		// System.out.println("after render: " + ++ar);
 		// set RenderSupport back to whatever it was before
 		RenderSupportRecorder rsRecorder = (RenderSupportRecorder) environment.pop(RenderSupport.class);
+		ClientBehaviorSupportRecorder cbsRecorder = (ClientBehaviorSupportRecorder) environment
+				.pop(ClientBehaviorSupport.class);
 
 		// cache content
 		CachedContent content = new CachedContent();
 		content.setContent(currentElement.toString());
-		content.setMethodCalls(rsRecorder.getMethodCalls());
+		content.setRenderSupportMethodCalls(rsRecorder.getMethodCalls());
+		content.setClientBehaviorSupportMethodCalls(cbsRecorder.getMethodCalls());
 		contentCache.addContent(key, content, cacheRegion);
 	}
 
 	/**
-	 * Returns the key that we want to cache our component against.  Depending on the parameters, this
-	 * is either the cacheKey, the component name + cacheKeySuffix or just the component name.  The
-	 * cacheKey will take precedence over any other parameters.
+	 * Returns the key that we want to cache our component against. Depending on the parameters, this is either the
+	 * cacheKey, the component name + cacheKeySuffix or just the component name. The cacheKey will take precedence over
+	 * any other parameters.
 	 */
 	private String getComponentKey() {
 		// if cacheKey is set then it overrides everything else

@@ -19,16 +19,18 @@
 
 package uk.co.ioko.tapestry.caching.services.support;
 
-
 import java.io.Serializable;
 import java.util.List;
 
 public class CachedContent implements Serializable {
+
 	private static final long serialVersionUID = -4232730988618575451L;
 
 	private String content;
 
-	private List<MethodCall> methodCalls;
+	private List<MethodCall> renderSupportMethodCalls;
+
+	private List<MethodCall> clientBehaviorSupportMethodCalls;
 
 	public String getContent() {
 		return content;
@@ -38,11 +40,19 @@ public class CachedContent implements Serializable {
 		this.content = content;
 	}
 
-	public List<MethodCall> getMethodCalls() {
-		return methodCalls;
+	public List<MethodCall> getRenderSupportMethodCalls() {
+		return renderSupportMethodCalls;
 	}
 
-	public void setMethodCalls(List<MethodCall> methodCalls) {
-		this.methodCalls = methodCalls;
+	public void setRenderSupportMethodCalls(List<MethodCall> methodCalls) {
+		this.renderSupportMethodCalls = methodCalls;
+	}
+
+	public List<MethodCall> getClientBehaviorSupportMethodCalls() {
+		return clientBehaviorSupportMethodCalls;
+	}
+
+	public void setClientBehaviorSupportMethodCalls(List<MethodCall> methodCalls) {
+		this.clientBehaviorSupportMethodCalls = methodCalls;
 	}
 }

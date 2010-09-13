@@ -19,6 +19,10 @@
 
 package uk.co.ioko.tapestry.caching.services;
 
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.tapestry5.Asset;
 import org.apache.tapestry5.ComponentResources;
 import org.apache.tapestry5.FieldFocusPriority;
@@ -26,25 +30,14 @@ import org.apache.tapestry5.RenderSupport;
 import org.apache.tapestry5.ioc.internal.util.Defense;
 import org.apache.tapestry5.json.JSONArray;
 import org.apache.tapestry5.json.JSONObject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import uk.co.ioko.tapestry.caching.services.support.MethodCall;
-
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
- * Proxy class for RenderSupport that records all methods called on it.  This is so we can 'playback'
- * method calls for cached components.
- *
+ * Proxy class for RenderSupport that records all methods called on it. This is so we can 'playback' method calls for
+ * cached components.
+ * 
  * @author seldred
  */
-public class RenderSupportRecorder implements RenderSupport {
-
-	private static final Logger logger = LoggerFactory.getLogger(RenderSupportRecorder.class);
-
-	private List<MethodCall> methodCalls;
+public class RenderSupportRecorder extends SupportRecorder implements RenderSupport {
 
 	private RenderSupport renderSupport;
 
@@ -56,7 +49,7 @@ public class RenderSupportRecorder implements RenderSupport {
 
 	public void addClasspathScriptLink(String... classpaths) {
 		Method method = getMethod("addClasspathScriptLink", String[].class);
-		recordMethodCall(method, new Object[] { classpaths});
+		recordMethodCall(method, new Object[] { classpaths });
 		renderSupport.addClasspathScriptLink(classpaths);
 	}
 
@@ -92,22 +85,22 @@ public class RenderSupportRecorder implements RenderSupport {
 
 	public void addScriptLink(Asset... scriptAssets) {
 		List<String> assets = new ArrayList<String>();
-        for (Asset asset : scriptAssets) {
-            Defense.notNull(asset, "scriptAsset");
-            assets.add(asset.toClientURL());
-        }
-        addScriptLink(assets.toArray(new String[assets.size()]));
+		for (Asset asset : scriptAssets) {
+			Defense.notNull(asset, "scriptAsset");
+			assets.add(asset.toClientURL());
+		}
+		addScriptLink(assets.toArray(new String[assets.size()]));
 	}
 
 	public void addScriptLink(String... scriptURLs) {
 		Method method = getMethod("addScriptLink", String[].class);
-		recordMethodCall(method, new Object[] {scriptURLs});
+		recordMethodCall(method, new Object[] { scriptURLs });
 		renderSupport.addScriptLink(scriptURLs);
 	}
 
 	public void addStylesheetLink(Asset stylesheet, String media) {
-        Defense.notNull(stylesheet, "stylesheet");
-        addStylesheetLink(stylesheet.toClientURL(), media);
+		Defense.notNull(stylesheet, "stylesheet");
+		addStylesheetLink(stylesheet.toClientURL(), media);
 	}
 
 	public void addStylesheetLink(String stylesheetURL, String media) {
@@ -134,25 +127,7 @@ public class RenderSupportRecorder implements RenderSupport {
 
 	// =============================================
 
-	public List<MethodCall> getMethodCalls() {
-		return methodCalls;
-	}
-
-	private void recordMethodCall(Method method, Object... params) {
-		MethodCall methodCall = new MethodCall(method.getName(), method.getParameterTypes(), params);
-		if (methodCalls == null) {
-			methodCalls = new ArrayList<MethodCall>();
-		}
-		methodCalls.add(methodCall);
-	}
-
 	private Method getMethod(String name, Class<?>... parameterTypes) {
-		try {
-			return RenderSupport.class.getMethod(name, parameterTypes);
-		}
-		catch (NoSuchMethodException e) {
-			logger.error("{}", e);
-			throw new RuntimeException(e);
-		}
+		return super.getMethod(RenderSupport.class, name, parameterTypes);
 	}
 }

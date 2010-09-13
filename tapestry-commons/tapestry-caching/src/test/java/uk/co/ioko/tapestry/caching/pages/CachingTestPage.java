@@ -21,20 +21,34 @@ package uk.co.ioko.tapestry.caching.pages;
 
 import java.util.Date;
 
+import org.apache.tapestry5.annotations.InjectComponent;
+import org.apache.tapestry5.corelib.components.Zone;
+
 /**
  * Created by IntelliJ IDEA. User: ben Date: Mar 25, 2009 Time: 4:47:32 PM
  */
 public class CachingTestPage {
+
+	@InjectComponent
+	private Zone helloZone1;
+
+	@InjectComponent
+	private Zone helloZone2;
+
+	private String name;
+
 	private Date now;
 
 	public Date getNow() {
 		return now;
 	}
 
-	public void setupRender() {
-
-
-		this.now = new Date();
+	public String getName() {
+		return name;
 	}
 
+	public void setupRender() {
+		this.now = new Date();
+		this.name = "Sam";
+	}
 }
