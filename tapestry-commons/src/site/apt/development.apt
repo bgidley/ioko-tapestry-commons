@@ -2,7 +2,7 @@ Development
 
  To work on this project you need to
 
- * Get a tapestry 360 {{{http://tapestry.formos.com/svnadmin/}Subversion Account}}
+ * Get a Google Account
  
  * Agree to assign copyright to ioko
 
@@ -32,20 +32,4 @@ Setting up your IDE
 
 How to do a release
 
- * First get everyone who is commiting to agree that release is ready
-
- * Check test coverage is 100%
-
- * On HEAD create a tag called vVERSION_NUMBER - e.g. v_1_2_0
-
- * On HEAD search/replace pom's <version>RELEASE-SNAPSHOT</version> to <version>NEW-SNAPSHOT</version>. You have to do tapestry-jquery seperately as it has a different version to indicate which version of jquery it is bundling.
-
- * Check out the tag
-
- * On the tag search/replace pom's <version>RELEASE-SNAPSHOT</version> to <version>RELEASE</version>. You have to do tapestry-jquery seperately as it has a different version to indicate which version of jquery it is bundling.
-
- * Commit to tag
-
- * Edit the Release build plan on bamboo to use this tag
-
- * Run the release build on bamboo
+ * Notes are on the ioko wiki (search for tapestry-commons) this isn't part of this as it is deployed to ioko internal servers
