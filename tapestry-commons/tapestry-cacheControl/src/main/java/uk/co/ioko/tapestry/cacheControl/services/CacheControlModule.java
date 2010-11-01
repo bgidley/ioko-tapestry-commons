@@ -116,22 +116,22 @@ public class CacheControlModule {
 	public static void contributeTypeCoercer(Configuration<CoercionTuple> configuration) {
 		Coercion<String, CacheType> coercion = new Coercion<String, CacheType>() {
 			public CacheType coerce(String input) {
-				if (input == CacheType.NONE.name()) {
+				if (input.equals(CacheType.NONE.name())) {
 					return CacheType.NONE;
 				}
-				if (input == CacheType.NEVER.name()) {
+				if (input.equals(CacheType.NEVER.name())) {
 					return CacheType.NEVER;
 				}
-				if (input == CacheType.SHORT.name()) {
+				if (input.equals(CacheType.SHORT.name())) {
 					return CacheType.SHORT;
 				}
-				if (input == CacheType.MEDIUM.name()) {
+				if (input.equals(CacheType.MEDIUM.name())) {
 					return CacheType.MEDIUM;
 				}
-				if (input == CacheType.LONG.name()) {
+				if (input.equals(CacheType.LONG.name())) {
 					return CacheType.LONG;
 				}
-				if (input == CacheType.FAR_FUTURE.name()) {
+				if (input.equals(CacheType.FAR_FUTURE.name())) {
 					return CacheType.FAR_FUTURE;
 				} else {
 					// We don't understand this and that should be impossible
